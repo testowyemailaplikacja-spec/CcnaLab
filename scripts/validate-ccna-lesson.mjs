@@ -10,7 +10,8 @@ import { pathToFileURL } from 'node:url';
 
 export const normalizeOption = value => String(value ?? '')
   .normalize('NFKC').toLocaleLowerCase('pl-PL')
-  .replace(/[()[\]{}.,;:!?'"`]/g, '')
+  .replace(/(\d),(\d)/g, '$1.$2')
+  .replace(/[()[\]{};:!?'"`]|,(?!\d)|\.(?!\d)/g, '')
   .replace(/\s+/g, ' ').trim();
 
 const isRecord = value => value !== null && typeof value === 'object' && !Array.isArray(value);
