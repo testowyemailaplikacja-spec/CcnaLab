@@ -1,0 +1,82 @@
+{
+  "schema": 1,
+  "project": "CCNALAB-MOD",
+  "date": "2026-11-08",
+  "repository": "testowyemailaplikacja-spec/CcnaLab",
+  "targetBranch": "develop",
+  "issue": "https://github.com/testowyemailaplikacja-spec/CcnaLab/issues/1",
+  "overall": "IN_PROGRESS",
+  "completionRule": "Only mark COMPLETED when P0-P5 are PASS with verified runnable evidence",
+  "protect": [
+    "existing UI",
+    "course/navigation",
+    "flashcards",
+    "AB/ABCD/exams",
+    "learner progress and IDs",
+    "PWA/offline",
+    "Packet Lab, CLI and all labs"
+  ],
+  "phases": [
+    {
+      "id": "P0",
+      "title": "Baseline, dependency independence, runtime",
+      "status": "IN_PROGRESS",
+      "evidence": [
+        "CCNA code SHA 37/37 audited",
+        "19 host assets missing",
+        "Node/browser regression NOT_RUN"
+      ],
+      "blockers": [
+        "Host dependencies unresolved",
+        "standalone runtime NOT_RUN"
+      ]
+    },
+    {
+      "id": "P1",
+      "title": "Structured content model and validation",
+      "status": "IN_PROGRESS",
+      "evidence": [],
+      "blockers": [
+        "Data/renderer integration not yet verified"
+      ]
+    },
+    {
+      "id": "P2",
+      "title": "Enforced lesson workflow",
+      "status": "NOT_STARTED",
+      "evidence": [],
+      "blockers": []
+    },
+    {
+      "id": "P3",
+      "title": "Incremental extraction from legacy.html",
+      "status": "NOT_STARTED",
+      "evidence": [],
+      "blockers": []
+    },
+    {
+      "id": "P4",
+      "title": "Automated CI and acceptance",
+      "status": "NOT_STARTED",
+      "evidence": [],
+      "blockers": []
+    },
+    {
+      "id": "P5",
+      "title": "Day 03 pilot and full regression",
+      "status": "NOT_STARTED",
+      "evidence": [],
+      "blockers": [
+        "Verified source material and end-to-end tests required"
+      ]
+    }
+  ],
+  "tests": {
+    "node": "NOT_RUN",
+    "jsdom": "NOT_RUN",
+    "playwright": "NOT_RUN",
+    "realDeployment": "NOT_RUN"
+  },
+  "completedAt": null,
+  "finalReport": null
+}
