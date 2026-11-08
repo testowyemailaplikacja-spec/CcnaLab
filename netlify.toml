@@ -1,0 +1,17 @@
+# Independent CCNA Lab preview only; do not use as Wiedora host configuration.
+[build]
+  command = "npm run build:standalone"
+  publish = "dist"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    X-Robots-Tag = "noindex, nofollow"
+    X-Frame-Options = "SAMEORIGIN"
+
+[[headers]]
+  for = "/apps/ccna/sw.js"
+  [headers.values]
+    Cache-Control = "no-cache"
