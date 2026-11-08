@@ -44,7 +44,8 @@ const server=http.createServer((req,res)=>{
       noteActual:sub?.note?.slice(0,150),noteSource:module?.data?.note?.slice(0,150),
       originalIDs:(module?.data?.questions||[]).map(q=>q.id),
       missingIDs:(module?.data?.questions||[]).map(q=>q.id).filter(id=>!(sub?.questions||[]).some(q=>q.id===id)),
-      pageerrors:errors};});
+      };
+  });
   console.log('CCNA module bridge diagnostic:',JSON.stringify(debug));
   await page.waitForFunction(()=>window.CCNALabModuleBridge?.status().some(item=>item.result==='ACTIVE'),{timeout:10000});
   const moduleStatus=await page.evaluate(()=>window.CCNALabModuleBridge.status());

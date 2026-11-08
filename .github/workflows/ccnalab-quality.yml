@@ -61,8 +61,11 @@ jobs:
           npx playwright install --with-deps chromium
       - name: Build independent CCNA
         run: npm run build:standalone
-      - name: Actual Chromium page, account isolation, learner routes, Packet Lab
-        run: npm run test:browser:standalone
+      - name: Chromium smoke - independent app and local progress
+        run: npm run test:browser:smoke
+      - name: Chromium Packet Lab regression - run even if smoke finds a problem
+        if: ${{ !cancelled() }}
+        run: npm run test:browser:packetlab
       - name: Save browser reports
         if: always()
         uses: actions/upload-artifact@v4

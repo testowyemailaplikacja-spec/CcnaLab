@@ -23,6 +23,8 @@
     "export:wiedora": "node scripts/prepare-wiedora-export.mjs",
     "test:standalone": "node --test tests/ccnalab-standalone.test.mjs",
     "test:legacy:wiedora": "node --test tests/ccna-browser-learner-fixture.test.cjs tests/ccna-bug-reports.test.cjs tests/ccna-confirmed-bugs.test.cjs tests/ccna-course.test.cjs tests/ccna-day02-connecting-devices-lab.test.cjs tests/ccna-day02-content-scope.test.cjs tests/ccna-disabled-qualification.test.cjs tests/ccna-flashcard-answer.test.cjs tests/ccna-lab-note-policy.test.cjs tests/ccna-packet-lab-keyboard-after-drag.test.cjs tests/ccna-packet-lab-live-ping.test.cjs tests/ccna-question-pool-visibility.test.cjs tests/ccna-route-targets.test.cjs tests/ccna-wrapper-regression.test.cjs",
-    "test:browser:standalone": "node tests/ccnalab-standalone-browser.cjs && node dist/apps/ccna/packet-lab/tests/browser-frame-ready.cjs && node dist/apps/ccna/packet-lab/tests/browser-protocols.cjs && node dist/apps/ccna/packet-lab/tests/browser-topics.cjs && node dist/apps/ccna/packet-lab/tests/browser-ethernet.cjs"
+    "test:browser:standalone": "npm run test:browser:smoke && npm run test:browser:packetlab",
+    "test:browser:smoke": "node tests/ccnalab-standalone-browser.cjs",
+    "test:browser:packetlab": "node dist/apps/ccna/packet-lab/tests/browser-frame-ready.cjs && node dist/apps/ccna/packet-lab/tests/browser-protocols.cjs && node dist/apps/ccna/packet-lab/tests/browser-topics.cjs && node dist/apps/ccna/packet-lab/tests/browser-ethernet.cjs"
   }
 }
