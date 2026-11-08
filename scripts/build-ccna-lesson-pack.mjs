@@ -28,7 +28,7 @@ export function buildLessonPack(lesson) {
       abVariants:[0,1,2].map(index=>deriveAB(card,index)),
       abcd:{id:card.id,question:card.question,options:[...card.options],correctIndex:card.correctIndex}
     })),
-    laboratory:structuredClone(lesson.laboratory)
+    laboratory:JSON.parse(JSON.stringify(lesson.laboratory))
   };
 }
 
