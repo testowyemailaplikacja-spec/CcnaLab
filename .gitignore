@@ -1,0 +1,18 @@
+# Dependencies and build outputs
+node_modules/
+dist/
+coverage/
+playwright-report/
+test-results/
+.tmp/
+
+# Credentials and local environments
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Local system
+.DS_Store
+Thumbs.db
