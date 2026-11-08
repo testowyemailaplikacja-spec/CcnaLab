@@ -47,3 +47,14 @@ test('conflict prevents overwriting an edited lesson',()=>{
  assert.equal(win.CCNALabModuleBridge.status()[0].result,'CONFLICT_NO_OVERRIDE');
  assert.equal(subsection.note,'Later Wiedora revision');
 });
+
+test('bridge preserves dynamic certification supplements after external note hydration',()=>{
+ const module=loadedModule(),subsection={...sourceObject('piec-warstw-tcp-ip')};
+ const suffix='<details class="ccna-question-note-supplement">Notatka dodana po imporcie</details>';
+ subsection.note+=suffix;
+ const frame={contentDocument:{readyState:'complete'},contentWindow:{getLearningSections:()=>[{id:'model-tcp-ip',subsections:[subsection]}]},addEventListener(){}};
+ const win={CCNALabLessonModules:[module],dispatchEvent(){}};
+ vm.runInNewContext(fs.readFileSync(path.join(root,'apps/ccna/lesson-overlay.js'),'utf8'),{window:win,document:{getElementById:()=>frame},CustomEvent:class {}});
+ assert.equal(win.CCNALabModuleBridge.status()[0].result,'ACTIVE');
+ assert.ok(subsection.note.endsWith(suffix));
+});

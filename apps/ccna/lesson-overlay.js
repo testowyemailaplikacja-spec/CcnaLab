@@ -31,7 +31,15 @@
         const isolated={sections:[{type:'part',sections:[{type:'learning-section',subsections:[candidate]}]}]};
         w.CcnaVocabulary.course(isolated);
       }
-      if(subsection.title!==candidate.title || subsection.note!==candidate.note){
+      // The original late-stage certification audit appends a details element
+      // to otherwise unchanged notes AFTER terminology normalization. Preserve
+      // that runtime-added supplement byte-for-byte rather than erasing it.
+      const originalNote=String(subsection.note || '');
+      const suffix=originalNote.startsWith(candidate.note)
+        ? originalNote.slice(candidate.note.length) : null;
+      const expectedSupplement=typeof suffix==='string' && (suffix==='' ||
+        suffix.startsWith('<details class="ccna-question-note-supplement">'));
+      if(subsection.title!==candidate.title || !expectedSupplement){
         status.push({subsectionId:module.subsectionId,result:'CONFLICT_NO_OVERRIDE'});
         continue;
       }
@@ -42,7 +50,7 @@
         status.push({subsectionId:module.subsectionId,result:'QUESTION_ID_CONFLICT_NO_OVERRIDE'});
         continue;
       }
-      subsection.note=candidate.note; // runtime-normalized external module, byte-identical to legacy
+      subsection.note=candidate.note+suffix; // preserve late-added certification explanations
       status.push({subsectionId:module.subsectionId,result:'ACTIVE',questionCount:(subsection.questions||[]).length});
     }
     window.dispatchEvent(new CustomEvent('ccnalab-lesson-modules-ready',{detail:current()}));
