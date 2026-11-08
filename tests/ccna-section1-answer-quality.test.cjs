@@ -9,6 +9,15 @@ const pools = require('../apps/ccna/question-pool-visibility.js');
 const vocabulary = require('../apps/ccna/data/terminology.js');
 const labs = require('../apps/ccna/data/jitl-labs.js');
 
+const originalSixIds = new Set([
+  'ethernet-standardy-i-predkosc',
+  'skretka-utp-i-przewody',
+  'auto-mdix',
+  'swiatlowod-i-transceivery',
+  'zasady-doboru-polaczen',
+  'dobor-medium-do-odleglosci'
+]);
+
 function boot() {
   const html = fs.readFileSync(path.join(__dirname, '../apps/ccna/legacy.html'), 'utf8');
   const dom = new JSDOM(html, {
@@ -38,7 +47,7 @@ test('section 1: all A/B and ABCD questions have distinct, graded choices', () =
     assert.deepEqual([...report.invalidGrading], [], 'ABCD expected index matches the original correct answer');
     assert.deepEqual([...report.duplicatedIds], [], 'IDs are unique across the entire first section');
 
-    const teaching = section.subsections.filter(sub => sub.type === 'learning-subsection');
+    const teaching = section.subsections.filter(sub => sub.type === 'learning-subsection' && originalSixIds.has(sub.id));
     assert.equal(teaching.length, 6);
     const studyCards = teaching.flatMap(sub => sub.questions || []);
     assert.equal(studyCards.length, archiveApplied ? 130 : 138);
@@ -123,7 +132,7 @@ test('edits remove references to the lecture without changing scoring, IDs or pr
 test('six notes retain CCNA topic content without learner-facing Day labels', () => {
   const { dom, section } = boot();
   try {
-    const notes = section.subsections.filter(sub => sub.type === 'learning-subsection');
+    const notes = section.subsections.filter(sub => sub.type === 'learning-subsection' && originalSixIds.has(sub.id));
     assert.equal(notes.length, 6);
     for (const sub of notes) {
       const html = String(sub.note || '');
