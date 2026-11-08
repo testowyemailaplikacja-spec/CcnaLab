@@ -43,6 +43,7 @@ export function buildStandalone({root=ROOT,output=path.join(root,'dist')}={}){
  const router=inside(output,'apps/ccna/router.js');
  let js=fs.readFileSync(router,'utf8');
  js=js.replace('const CANONICAL_ORIGIN="https://constant-app.netlify.app";','const CANONICAL_ORIGIN=location.origin;');
+ js=js.replace('r.content=(indexable&&!preview())?"index,follow,max-image-preview:large":"noindex,follow";','r.content="noindex,nofollow";');
  fs.writeFileSync(router,js);
  const audit=auditAssets({root:output});
  if(audit.missing.length)throw new Error('Standalone package misses '+audit.missing.length+' static host assets: '+audit.missing.map(x=>x.path).join(', '));
