@@ -1,0 +1,379 @@
+.portal-home-link{
+  position:fixed;left:max(12px,env(safe-area-inset-left));bottom:max(12px,env(safe-area-inset-bottom));
+  z-index:2147483647;display:inline-flex;align-items:center;gap:8px;min-height:42px;padding:9px 13px;
+  border:1px solid rgba(148,163,184,.35);border-radius:13px;background:rgba(255,255,255,.94);
+  color:#172033!important;text-decoration:none!important;font:700 13px/1 system-ui,-apple-system,"Segoe UI",sans-serif!important;
+  box-shadow:0 10px 30px rgba(15,23,42,.18);backdrop-filter:blur(12px);transition:transform .16s ease,box-shadow .16s ease,border-color .16s ease
+}
+.portal-home-link:hover{transform:translateY(-2px);box-shadow:0 14px 34px rgba(15,23,42,.22);border-color:rgba(100,116,139,.55)}
+.portal-home-link:focus-visible{outline:3px solid rgba(79,108,232,.28);outline-offset:2px}
+.portal-home-link .portal-home-icon{font-size:16px;line-height:1}
+.portal-home-link .portal-home-text{white-space:nowrap}
+@media(prefers-color-scheme:dark){.portal-home-link{background:rgba(16,24,40,.94);color:#f8fafc!important;border-color:rgba(255,255,255,.16)}}
+@media(max-width:520px){.portal-home-link{left:9px;bottom:9px;min-height:40px;padding:8px 11px;font-size:12px}}
+
+
+.portal-preferences{
+  position:fixed;right:max(12px,env(safe-area-inset-right));top:max(72px,calc(env(safe-area-inset-top) + 58px));
+  z-index:1900;display:flex;align-items:center;gap:6px;padding:6px;
+  border:1px solid rgba(148,163,184,.34);border-radius:13px;background:rgba(255,255,255,.94);
+  box-shadow:0 10px 30px rgba(15,23,42,.16);backdrop-filter:blur(12px);
+  font:700 11px/1 system-ui,-apple-system,"Segoe UI",sans-serif!important
+}
+.portal-pref-group{display:flex;align-items:center;gap:3px}
+.portal-pref-group+ .portal-pref-group{padding-left:6px;border-left:1px solid rgba(148,163,184,.28)}
+.portal-pref-group button{
+  min-width:30px;height:30px;border:1px solid transparent;border-radius:8px;background:transparent;
+  color:#52606d;font:800 10px/1 system-ui,-apple-system,"Segoe UI",sans-serif!important;cursor:pointer
+}
+.portal-pref-group button:hover{background:#eef3f7}
+.portal-pref-group button.active{background:#17324d;color:#fff;border-color:#17324d}
+.portal-theme-switch button{font-size:13px!important;min-width:28px}
+html[data-portal-theme="blue"]{color-scheme:dark}
+html[data-portal-theme="blue"] body{background-color:#0f2235!important;color:#e8f0f7}
+html[data-portal-theme="blue"] .portal-preferences,
+html[data-portal-theme="blue"] .portal-home-link{background:rgba(15,34,53,.96);color:#f8fafc!important;border-color:rgba(255,255,255,.15)}
+html[data-portal-theme="blue"] .portal-pref-group button{color:#c9d8e5}
+html[data-portal-theme="blue"] .portal-pref-group button:hover{background:#1e405f}
+html[data-portal-theme="blue"] .portal-pref-group button.active{background:#5f7f9e;border-color:#7898b8;color:#fff}
+html[data-portal-theme="blue"] .portal-pref-group+ .portal-pref-group{border-left-color:rgba(255,255,255,.14)}
+html[data-portal-theme="gray"] body{background-color:#dfe3e8!important;color:#28323a}
+html[data-portal-theme="gray"] .portal-preferences,
+html[data-portal-theme="gray"] .portal-home-link{background:rgba(238,240,242,.96);border-color:#bcc4cc;color:#2f3a43!important}
+html[data-portal-theme="gray"] .portal-pref-group button.active{background:#68737d;border-color:#68737d;color:#fff}
+
+/* Strona główna */
+html[data-portal-theme="blue"] body.portal-home .site-header,
+html[data-portal-theme="blue"] body.portal-home .hero-panel,
+html[data-portal-theme="blue"] body.portal-home .app-card,
+html[data-portal-theme="blue"] body.portal-home .how-card{background:#142d43!important;color:#eaf2f8!important;border-color:#284965!important}
+html[data-portal-theme="blue"] body.portal-home h1,
+html[data-portal-theme="blue"] body.portal-home h2,
+html[data-portal-theme="blue"] body.portal-home h3,
+html[data-portal-theme="blue"] body.portal-home strong{color:#f4f8fb!important}
+html[data-portal-theme="blue"] body.portal-home p,
+html[data-portal-theme="blue"] body.portal-home small{color:#b9cbd9!important}
+html[data-portal-theme="gray"] body.portal-home .site-header,
+html[data-portal-theme="gray"] body.portal-home .hero-panel,
+html[data-portal-theme="gray"] body.portal-home .app-card,
+html[data-portal-theme="gray"] body.portal-home .how-card{background:#eef0f2!important;border-color:#c7cdd3!important}
+
+/* Mapa podróży */
+html[data-portal-theme="blue"] .travel-sidebar,
+html[data-portal-theme="blue"] .travel-header,
+html[data-portal-theme="blue"] .category-card,
+html[data-portal-theme="blue"] .planner-panel,
+html[data-portal-theme="blue"] .events-panel,
+html[data-portal-theme="blue"] .settings-drawer{background:#10283a!important;color:#e7f0f6!important;border-color:#27465d!important}
+html[data-portal-theme="blue"] .category-row,
+html[data-portal-theme="blue"] .category-section-toggle,
+html[data-portal-theme="blue"] .category-section-body,
+html[data-portal-theme="blue"] .events-filter-row{background:#142f43!important;border-color:#27465d!important;color:#e6eef4!important}
+html[data-portal-theme="blue"] .category-copy strong,
+html[data-portal-theme="blue"] .events-head h3{color:#eef5fa!important}
+html[data-portal-theme="blue"] .category-copy small,
+html[data-portal-theme="blue"] .events-head p{color:#a9bccb!important}
+html[data-portal-theme="gray"] .travel-sidebar,
+html[data-portal-theme="gray"] .travel-header,
+html[data-portal-theme="gray"] .category-card,
+html[data-portal-theme="gray"] .planner-panel,
+html[data-portal-theme="gray"] .events-panel{background:#eef0f2!important;border-color:#c9d0d6!important}
+
+@media(max-width:699px){
+  .portal-preferences{
+    right:max(8px,env(safe-area-inset-right));top:auto;
+    bottom:max(74px,calc(env(safe-area-inset-bottom) + 62px));
+    padding:4px;gap:4px
+  }
+  .portal-pref-group button{min-width:27px;height:28px}
+  .portal-home-link{bottom:8px}
+}
+
+
+/* Generic information pages and account surface */
+html[data-portal-theme="blue"] body.portal-info-page,
+html[data-portal-theme="blue"] body.account-page{background:#0f2235!important;color:#e8f0f7!important}
+html[data-portal-theme="blue"] body.portal-info-page .card,
+html[data-portal-theme="blue"] body.portal-info-page .back,
+html[data-portal-theme="blue"] body.account-page .account-header,
+html[data-portal-theme="blue"] body.account-page .loading-card,
+html[data-portal-theme="blue"] body.account-page .login-required,
+html[data-portal-theme="blue"] body.account-page .account-hero,
+html[data-portal-theme="blue"] body.account-page .panel-card,
+html[data-portal-theme="blue"] body.account-page .admin-card,
+html[data-portal-theme="blue"] body.account-page .progress-transfer-dialog,
+html[data-portal-theme="blue"] body.account-page .admin-user-details-dialog{
+  background:#142d43!important;color:#eef5fa!important;border-color:#2b4d67!important
+}
+html[data-portal-theme="blue"] body.portal-info-page h1,
+html[data-portal-theme="blue"] body.portal-info-page h2,
+html[data-portal-theme="blue"] body.account-page h1,
+html[data-portal-theme="blue"] body.account-page h2,
+html[data-portal-theme="blue"] body.account-page h3,
+html[data-portal-theme="blue"] body.account-page strong{color:#f4f8fb!important}
+html[data-portal-theme="blue"] body.portal-info-page p,
+html[data-portal-theme="blue"] body.portal-info-page .meta,
+html[data-portal-theme="blue"] body.portal-info-page .foot,
+html[data-portal-theme="blue"] body.account-page p,
+html[data-portal-theme="blue"] body.account-page small,
+html[data-portal-theme="blue"] body.account-page .hero-meta{color:#b8cad8!important}
+html[data-portal-theme="blue"] body.account-page input,
+html[data-portal-theme="blue"] body.account-page select,
+html[data-portal-theme="blue"] body.account-page textarea{background:#0f2638!important;color:#eef5fa!important;border-color:#31526a!important}
+
+html[data-portal-theme="gray"] body.portal-info-page,
+html[data-portal-theme="gray"] body.account-page{background:#dfe3e8!important;color:#2b343c!important}
+html[data-portal-theme="gray"] body.portal-info-page .card,
+html[data-portal-theme="gray"] body.portal-info-page .back,
+html[data-portal-theme="gray"] body.account-page .account-header,
+html[data-portal-theme="gray"] body.account-page .loading-card,
+html[data-portal-theme="gray"] body.account-page .login-required,
+html[data-portal-theme="gray"] body.account-page .account-hero,
+html[data-portal-theme="gray"] body.account-page .panel-card,
+html[data-portal-theme="gray"] body.account-page .admin-card{
+  background:#eef0f2!important;border-color:#c4cbd2!important
+}
+
+/* Every theme defines foreground and surface colours together, including frames. */
+html[data-portal-theme]{
+  --portal-bg:#f1f4f8;--portal-surface:#fff;--portal-soft:#eaf0f6;
+  --portal-ink:#213247;--portal-muted:#52647a;--portal-line:#c5d1df;
+  --portal-link:#244f77;--portal-action:#244f77;--portal-on-action:#fff;
+  --portal-success-bg:#e5f4ec;--portal-success:#175838;
+  --portal-error-bg:#fcebed;--portal-error:#8a2734;--portal-warn-bg:#fff3d5;--portal-warn:#71500c;
+  --portal-correct-muted-bg:#eef0d5;--portal-correct-muted:#4b5b22;--portal-correct-muted-line:#7d8f4f;
+  color-scheme:light;
+}
+html[data-portal-theme="blue"]{
+  --portal-bg:#0f2235;--portal-surface:#142d43;--portal-soft:#203d56;
+  --portal-ink:#edf4fb;--portal-muted:#b9cbdc;--portal-line:#476783;
+  --portal-link:#b5d9f7;--portal-action:#244f77;--portal-on-action:#fff;
+  --portal-success-bg:#173c32;--portal-success:#b3f0ce;
+  --portal-error-bg:#462733;--portal-error:#ffced4;--portal-warn-bg:#433922;--portal-warn:#ffe0a0;
+  --portal-correct-muted-bg:#37402a;--portal-correct-muted:#dce9a9;--portal-correct-muted-line:#9caf64;
+  color-scheme:dark;
+}
+html[data-portal-theme="gray"]{
+  --portal-bg:#dfe3e8;--portal-surface:#f0f2f5;--portal-soft:#e2e7ed;
+  --portal-ink:#25313f;--portal-muted:#4c5d70;--portal-line:#aab6c4;
+  --portal-link:#234c72;--portal-action:#354b60;
+}
+html[data-portal-theme]:not([data-app-theme]){
+  --bg:var(--portal-bg);--bg-soft:var(--portal-soft);--surface:var(--portal-surface);--soft:var(--portal-soft);
+  --bg-2:var(--portal-soft);--bg-3:var(--portal-soft);--panel:var(--portal-surface);--panel-2:var(--portal-soft);--panel-soft:var(--portal-soft);
+  --card:var(--portal-surface);--card-2:var(--portal-soft);--text:var(--portal-ink);--ink:var(--portal-ink);--muted:var(--portal-muted);
+  --line:var(--portal-line);--line-2:var(--portal-line);--line-3:var(--portal-line);--line-strong:var(--portal-line);
+  --burgundy:var(--portal-link);--burgundy-dark:var(--portal-action);--gold-soft:var(--portal-soft);--blueSoft:var(--portal-soft);
+  --greenBg:var(--portal-success-bg);--green:var(--portal-success);--redBg:var(--portal-error-bg);--red:var(--portal-error);
+  --amberBg:var(--portal-warn-bg);--amber:var(--portal-warn);
+}
+html[data-portal-theme]:not([data-app-theme]) body{background:var(--portal-bg)!important;color:var(--portal-ink)!important}
+/* Law has its own complete light, navy and dark gray palettes. */
+html[data-portal-theme][data-app-theme] body{background:var(--bg)!important;color:var(--text)!important}
+html[data-portal-theme] .portal-preferences,html[data-portal-theme] .portal-home-link{
+  background:var(--portal-surface)!important;color:var(--portal-ink)!important;border-color:var(--portal-line)!important;
+}
+html[data-portal-theme] .portal-pref-group button{color:var(--portal-ink)}
+html[data-portal-theme] .portal-pref-group button:hover{background:var(--portal-soft)}
+html[data-portal-theme] .portal-pref-group button.active{background:var(--portal-action);color:var(--portal-on-action);border-color:var(--portal-link)}
+html[data-portal-theme] .portal-pref-group+.portal-pref-group{border-color:var(--portal-line)}
+
+html[data-portal-theme]:not([data-app-theme]) :is(input:not([type="checkbox"]):not([type="radio"]):not([type="range"]),select,textarea):not(.pt-lab *){
+  background:var(--portal-surface)!important;color:var(--portal-ink)!important;border-color:var(--portal-line)!important;color-scheme:inherit;
+}
+html[data-portal-theme] :is(input,textarea)::placeholder{color:var(--portal-muted);opacity:1}
+
+/* Portal, authentication and account panels. */
+html[data-portal-theme] body.portal-home :is(.site-header,.hero-panel,.app-card,.how-card,.auth-modal,.modal-head,.account-menu,.app-search,.continue-card){
+  background:var(--portal-surface)!important;color:var(--portal-ink)!important;border-color:var(--portal-line)!important;
+}
+html[data-portal-theme] body.portal-home :is(h1,h2,h3,strong,.header-nav a,.hero-panel-kicker,.field label){color:var(--portal-ink)!important}
+html[data-portal-theme] body.portal-home :is(p,small,.hero-stat small,.catalog-summary,.info-number,.section-kicker,.eyebrow){color:var(--portal-muted)!important}
+html[data-portal-theme] body.portal-home .hero h1>span{color:var(--portal-link)!important}
+html[data-portal-theme] body.portal-home :is(.hero-stat,.auth-tabs,.auth-security,.category-button,.category-button span,.close-button,.password-toggle,.version-tag){
+  background:var(--portal-soft)!important;color:var(--portal-ink)!important;border-color:var(--portal-line)!important;
+}
+html[data-portal-theme] body.portal-home :is(.auth-tabs button,.category-button.active){background:var(--portal-surface)!important;color:var(--portal-ink)!important}
+html[data-portal-theme] body.portal-home :is(.account-button,.button.secondary,.header-ai){background:var(--portal-surface)!important;color:var(--portal-ink)!important;border-color:var(--portal-line)!important}
+html[data-portal-theme] body.portal-home .site-footer{background:#142d43!important;color:#edf4fb!important}
+html[data-portal-theme] body.portal-home .site-footer :is(h3,strong,a,p,small,.footer-top){color:#d6e4f0!important}
+html[data-portal-theme] body.portal-home .site-footer :is(.footer-badges span,.footer-disclaimer p){background:#203d56!important;color:#d6e4f0!important;border-color:#476783!important}
+
+html[data-portal-theme] body.account-page :is(.account-header,.account-hero,.panel-card,.admin-card,.loading-card,.login-required,.progress-section,.progress-app-card,.profile-details>div,.summary-list>div,.admin-stats article,.progress-transfer-dialog,.admin-user-details-dialog,.activity-total,.activity-app-card,.ai-usage-card,.header-link,.admin-report-item,.admin-error-item){
+  background:var(--portal-surface)!important;color:var(--portal-ink)!important;border-color:var(--portal-line)!important;
+}
+html[data-portal-theme] body.account-page :is(h1,h2,h3,strong,label,.hero-kicker,.role-badge,.hero-meta span,.section-kicker,td,th){color:var(--portal-ink)!important}
+html[data-portal-theme] body.account-page :is(p,small,.hero-meta,.profile-details span,.summary-list span,.progress-app-value span,.progress-app-foot small,.privacy-note,.service-list span,.progress-sync-status,.activity-total span){color:var(--portal-muted)!important}
+html[data-portal-theme] body.account-page :is(.role-badge,.hero-meta span,.app-breakdown>div,.progress-sync-status,.profile-details>div,.summary-list>div){background:var(--portal-soft)!important;border-color:var(--portal-line)!important}
+html[data-portal-theme] body.account-page :is(.progress-open-link,.header-link,.text-link){color:var(--portal-link)!important}
+html[data-portal-theme] body.account-page .admin-report-item :is(a,button){color:var(--portal-link)!important}
+html[data-portal-theme] body.account-page .admin-report-item button{background:var(--portal-surface)!important;border-color:var(--portal-line)!important}
+html[data-portal-theme] body.account-page .avatar-action{background:var(--portal-action)!important;color:var(--portal-on-action)!important}
+html[data-portal-theme] body.portal-info-page :is(.card,.back){background:var(--portal-surface)!important;color:var(--portal-ink)!important;border-color:var(--portal-line)!important}
+html[data-portal-theme] body.portal-info-page :is(h1,h2,strong){color:var(--portal-ink)!important}
+html[data-portal-theme] body.portal-info-page :is(p,li,.meta,.foot){color:var(--portal-muted)!important}
+
+/* Native and legacy study interfaces: pair all cards and controls with their text. */
+html[data-portal-app="ccna"] :is(.hero,.section-card,.module-card,.admin-section-card,.note-card,.note-compare>div,.question-box,.qa-card,.qa-answer,.note-lead,.note-keypoints,.counter,.test-topbar,.exam-config,.mode-panel,.result-box,.status-message,.exam-summary,.flashcard,.flash-answer,.subsection-row,.binary-study-panel,.binary-list-item,.binary-study-summary>div,.progress-panel,.progress-item){
+  background:var(--portal-surface)!important;color:var(--portal-ink)!important;border-color:var(--portal-line)!important;
+}
+html[data-portal-app="ccna"] :is(h1,h2,h3,h4,strong,.note-keypoints>strong){color:var(--portal-ink)}
+/* The simulator keeps its own paired light panels and dark toolbars. */
+html[data-portal-app="ccna"] .pt-lab :is(h1,h2,h3,h4,strong){color:inherit}
+html[data-portal-app="ccna"] .pt-lab :is(input,textarea)::placeholder{color:#526575}
+html[data-portal-app="ccna"] :is(.hero p,.muted,footer,.counter,.exam-note,.flash-help,.note-tag){color:var(--portal-muted)!important}
+html[data-portal-app="ccna"] :is(.badge,.eyebrow,.mini-chip,.question-status,.section-mode-tabs){background:var(--portal-soft)!important;color:var(--portal-link)!important;border-color:var(--portal-line)!important}
+
+html[data-portal-app="fitplan"] :is(.hero,.counter,.section-card,.module-card,.note-card,.note-keypoints,.note-lead,.note-compare>div,.progress-box,.summary-card,.metric-card,.info-card,.exercise-card,.diet-card,.workout-card){
+  background:var(--portal-surface)!important;color:var(--portal-ink)!important;border-color:var(--portal-line)!important;
+}
+html[data-portal-app="fitplan"] :is(h1,h2,h3,h4,.counter strong,.progress-box strong,.eyebrow){color:var(--portal-ink)!important}
+html[data-portal-app="fitplan"] :is(.muted,.hero p,footer,.counter,.mini-badge,.badge){color:var(--portal-muted)!important}
+html[data-portal-app="fitplan"] :is(.fp-layout,.fp-top,.fp-sidebar,.fp-detail,.fp-library,.fp-footer,.fp-selected,.fp-muscle-card,.fp-exercise,.fp-search,.fp-segment){
+  background:var(--portal-surface)!important;color:var(--portal-ink)!important;border-color:var(--portal-line)!important;
+}
+html[data-portal-app="fitplan"] :is(.fp-brand,.fp-kicker,.fp-selected-label,.fp-card-info strong,.fp-selected h3,.fp-detail h3,.fp-detail h4){color:var(--portal-ink)!important}
+html[data-portal-app="fitplan"] :is(.fp-latin,.fp-side,.fp-group-note,.fp-sidebar-note,.fp-sidebar-note small,.fp-footer,.fp-footer small,.fp-footer summary,.fp-stage-caption,.fp-card-info small,.fp-selected small,.fp-selected p,.fp-detail p,.fp-detail li,.fp-brand small,.fp-online,.fp-exercise span:first-child){color:var(--portal-muted)!important}
+html[data-portal-app="fitplan"] :is(.fp-mark,.fp-footer a){color:var(--portal-link)!important}
+html[data-portal-app="fitplan"] :is(.fp-btn,.fp-filters button,.fp-segment button,.fp-nav button,.fp-sideitems button){background:var(--portal-soft)!important;color:var(--portal-ink)!important;border-color:var(--portal-line)!important}
+html[data-portal-app="fitplan"] .fp-sideitems button span{color:var(--portal-muted)!important;opacity:1}
+html[data-portal-app="fitplan"] .fp-center{background:var(--portal-surface)!important;color:var(--portal-ink)!important}
+html[data-portal-app="fitplan"] .fp-stage{background:#172125;color:#d9e9e2}
+html[data-portal-app="fitplan"] .fp-stage :is(.fp-stage-caption,.fp-angle,.fp-view-labels,.fp-loader strong,.fp-loader p){color:#d9e9e2!important}
+html[data-portal-app="fitplan"] .fp-hint{color:var(--portal-muted)!important}
+html[data-portal-app="fitplan"] :is(.fp-btn.active,.fp-filters button.active,.fp-muscle-card.active){background:var(--portal-soft)!important;color:var(--portal-link)!important;border-color:var(--portal-link)!important}
+
+html[data-portal-app="oficerska"] :is(.choice-card,.written-header,.question-card,.note-card,.history-card,.weapon-card,.weapon-notes,.modal-card,.progress-card,.stats-card,.result-card,.summary-card,.study-panel,.oral-card,.topic-card,.concept-card,.regulation-card){
+  background:var(--portal-surface)!important;color:var(--portal-ink)!important;border-color:var(--portal-line)!important;
+}
+html[data-portal-app="oficerska"] :is(h1,h2,h3,h4,.section-title){color:var(--portal-ink)}
+html[data-portal-app="oficerska"] :is(.muted,.meta,.choice-card p,.modal-card p){color:var(--portal-muted)!important}
+html[data-portal-app="oficerska"] .home-hero{background:var(--portal-action)!important;color:var(--portal-on-action)!important}
+html[data-portal-app="oficerska"] .home-hero :is(h1,p){color:var(--portal-on-action)!important}
+
+html[data-portal-theme]:not([data-app-theme]) :is(.action-button,.pill-button,.subsection-button,.inline-back,.home-button,.back-button,.exam-size,.reveal-answer,.flash-rating button,.study-mode-toggle,.answer-option,.binary-answer,.binary-toggle,.mode-tab,.tab,.btn,.button.secondary,.tab-button,.fp-btn){
+  background:var(--portal-soft)!important;color:var(--portal-ink)!important;border-color:var(--portal-line)!important;
+}
+html[data-portal-theme]:not([data-app-theme]) :is(.action-button.primary,.pill-button.active,.mode-tab.active,.exam-size.selected,.binary-toggle.active,.tab.active,.tab-button.active,.btn.primary,.button.primary,.header-cta,.primary-action,.header-button.primary){
+  background:var(--portal-action)!important;color:var(--portal-on-action)!important;border-color:var(--portal-action)!important;
+}
+html[data-portal-theme]:not([data-app-theme]) :is(.action-button,.answer-option,.binary-answer,.btn,.tab-button) :is(strong,small){color:inherit!important}
+html[data-portal-theme]:not([data-app-theme]) :is(.answer-option.exam-correct,.answer-option.correct,.binary-answer.correct,.correct-answer){background:var(--portal-success-bg)!important;color:var(--portal-success)!important}
+html[data-portal-theme]:not([data-app-theme]) :is(.answer-option.exam-wrong,.answer-option.wrong,.binary-answer.wrong,.wrong-answer){background:var(--portal-error-bg)!important;color:var(--portal-error)!important}
+html[data-portal-theme]:not([data-app-theme]) .answer-option.exam-correct-muted{background:var(--portal-correct-muted-bg)!important;color:var(--portal-correct-muted)!important;border-color:var(--portal-correct-muted-line)!important}
+html[data-portal-app="ccna"] .admin-section-card.completed-subsection-card{background:var(--portal-success-bg)!important;color:var(--portal-success)!important;border-color:var(--portal-success)!important;box-shadow:0 10px 25px rgba(35,112,76,.18)!important}
+html[data-portal-app="ccna"] .admin-section-card.completed-subsection-card :is(h3,p,strong){color:var(--portal-success)!important}
+
+/* Travel sidebars, settings, popups and route cards share the selected palette. */
+html[data-portal-app="podroze"] :is(.travel-header,.travel-sidebar,.control-card,.category-row,.category-section-toggle,.category-section-body,.category-search,.planner-panel,.events-panel,.events-filter-row,.settings-drawer,.map-legend,.map-status,.coordinates,.poi-item,.itinerary-day,.itinerary-stop,.map-style,.location-details div,.route-summary-grid div,.quick-places button,.leaflet-popup-content-wrapper,.leaflet-popup-tip,.map-context-menu,.context-menu,.event-card){
+  background:var(--portal-surface)!important;color:var(--portal-ink)!important;border-color:var(--portal-line)!important;
+}
+html[data-portal-app="podroze"] :is(h1,h2,h3,strong,.category-copy strong,.category-section-title,.category-kicker,.settings-field>span){color:var(--portal-ink)!important}
+html[data-portal-app="podroze"] :is(.category-copy small,.category-count,.control-title small,.poi-copy span,.poi-distance,.map-style small,.settings-note,.popup-meta,.range-field>span,.route-fields label>span,.route-options label>span,.route-category-hint,.itinerary-day-head span,.location-details span,.map-legend span){color:var(--portal-muted)!important}
+html[data-portal-app="podroze"] :is(.header-button,.wide-button.secondary-action,.input-with-action button,.settings-close,.settings-done,.map-topbar button,.settings-drawer button,.category-icon,.poi-symbol,.popup-category,.search-state){
+  background:var(--portal-soft)!important;color:var(--portal-ink)!important;border-color:var(--portal-line)!important;
+}
+html[data-portal-app="podroze"] :is(.header-button.primary,.wide-button.primary-action,.settings-done){background:var(--portal-action)!important;color:var(--portal-on-action)!important}
+html[data-portal-app="podroze"] .category-actions button{color:var(--portal-link)!important}
+html[data-portal-app="podroze"] .category-row:has(input:checked){background:var(--portal-soft)!important;border-color:var(--portal-link)!important}
+html[data-portal-app="podroze"] :is(.search-state.error,.map-status.error){background:var(--portal-error-bg)!important;color:var(--portal-error)!important}
+html[data-portal-app="podroze"] .search-state.success{background:var(--portal-success-bg)!important;color:var(--portal-success)!important}
+
+/* Booking calendar and practice information. */
+html[data-portal-app="psychologia"] :is(.site-header,.hero-card,.service-grid article,.about-points article,.booking-card,.booking-note,.trust-row span,.profile-meta span,.appointment-card){
+  background:var(--portal-surface)!important;color:var(--portal-ink)!important;border-color:var(--portal-line)!important;
+}
+html[data-portal-app="psychologia"] :is(h1,h2,h3,strong,.site-header nav a,.profile-label,.eyebrow,.booking-form label){color:var(--portal-ink)!important}
+html[data-portal-app="psychologia"] :is(p,small,.about-points span,.booking-note span,.weekdays span){color:var(--portal-muted)!important}
+html[data-portal-app="psychologia"] :is(.calendar-head button,.calendar-day,.time-slot){background:var(--portal-soft)!important;color:var(--portal-ink)!important;border-color:var(--portal-line)!important}
+html[data-portal-app="psychologia"] :is(.calendar-day.selected,.time-slot.selected,.button.primary,.header-cta){background:var(--portal-action)!important;color:var(--portal-on-action)!important;border-color:var(--portal-action)!important}
+#portal-content-protection-cover .portal-protection-cover-card :is(strong,span){color:#edf4fb!important}
+@media print{html[data-portal-language="en"].portal-content-protected body::before{content:"Printing content from this app is disabled."!important}}
+
+/* The AI widget has its own variables and must keep foregrounds paired too. */
+html[data-portal-theme] .portal-ai-root{--pai-bg:var(--portal-surface);--pai-ink:var(--portal-ink);--pai-muted:var(--portal-muted);--pai-line:var(--portal-line)}
+html[data-portal-theme] :is(.portal-ai-panel,.portal-ai-head,.portal-ai-historybar,.portal-ai-compose){background:var(--portal-surface)!important;color:var(--portal-ink)!important;border-color:var(--portal-line)!important}
+html[data-portal-theme] :is(.portal-ai-head strong,.portal-ai-empty strong){color:var(--portal-ink)!important}
+html[data-portal-theme] :is(.portal-ai-head small,.portal-ai-empty,.portal-ai-compose-foot small){color:var(--portal-muted)!important}
+html[data-portal-theme] :is(.portal-ai-head-actions button,.portal-ai-historybar button,.portal-ai-quick button,.portal-ai-msg.assistant){background:var(--portal-soft)!important;color:var(--portal-ink)!important;border-color:var(--portal-line)!important}
+html[data-portal-theme] .portal-ai-msg.error{background:var(--portal-error-bg)!important;color:var(--portal-error)!important}
+html[data-portal-theme] :is(.portal-ai-msg.user,.portal-ai-send){color:#fff!important}
+
+/* Less frequent screens use the same pairs as the main views. */
+html[data-portal-app="oficerska"] :is(.collective-intro-card,.collective-card,.collective-result,.history-question-card,.setup-card,.history-study-card,.weapon-branch-card){
+  background:var(--portal-surface)!important;color:var(--portal-ink)!important;border-color:var(--portal-line)!important;
+}
+html[data-portal-app="oficerska"] :is(.card-badge,.ste-topic-code,.contact-card a,.app-footer a,.history-question-number){color:var(--portal-link)!important}
+html[data-portal-app="oficerska"] .ste-topic-code.live{background:var(--portal-warn-bg)!important;color:var(--portal-warn)!important}
+html[data-portal-app="oficerska"] .collective-answer{background:var(--portal-success-bg)!important;color:var(--portal-success)!important}
+html[data-portal-app="oficerska"] .status-filter-options label{background:var(--portal-soft)!important;color:var(--portal-ink)!important;border-color:var(--portal-line)!important}
+html[data-portal-app="oficerska"] :is(.status.new,.status.active,.result-score){color:var(--portal-link)!important}
+html[data-portal-app="oficerska"] .status.excluded{background:var(--portal-soft)!important;color:var(--portal-muted)!important}
+
+html[data-portal-app="psychologia"] :is(.appointment-empty,.appointment-item){background:var(--portal-surface)!important;color:var(--portal-muted)!important;border-color:var(--portal-line)!important}
+html[data-portal-app="psychologia"] .empty-slots{color:var(--portal-muted)!important}
+html[data-portal-app="psychologia"] .service-grid article>span{color:var(--portal-link)!important}
+html[data-portal-app="psychologia"] .crisis-note{background:var(--portal-warn-bg)!important;color:var(--portal-warn)!important}
+html[data-portal-app="psychologia"] .crisis-note :is(strong,span,p){color:var(--portal-warn)!important}
+
+html[data-portal-app="podroze"] :is(.category-section-title,.category-actions button,.category-parent-head,.manual-location,.worship-filter-panel,.worship-filter-section,.worship-filter-section.traits,.worship-filter-summary,.worship-trait,.worship-option){
+  background:var(--portal-soft)!important;color:var(--portal-ink)!important;border-color:var(--portal-line)!important;
+}
+html[data-portal-app="podroze"] :is(.worship-filter-head strong,.worship-option span:last-child,.worship-trait span){color:var(--portal-ink)!important}
+html[data-portal-app="podroze"] :is(.worship-trait small,.worship-filter-head small,.worship-filter-summary small,.category-caret,.events-head p,#eventsCount,#categoryCount,.coordinates span,.context-coordinates,.brand small,.manual-location label>span,.events-map-toggle span){color:var(--portal-muted)!important}
+html[data-portal-app="podroze"] .manual-location summary{color:var(--portal-link)!important}
+html[data-portal-theme] body.account-page :is(.activity-app-card span,.ai-usage-grid span){color:var(--portal-link)!important}
+html[data-portal-theme] body.account-page .ai-usage-grid article{background:var(--portal-surface)!important;border-color:var(--portal-line)!important}
+
+/* CCNA: widoczność tabel w trybie granatowym i ciemniejszy motyw szary. */
+html[data-portal-theme="gray"][data-portal-app="ccna"]{
+  --portal-bg:#b4beca;--portal-surface:#d5dce4;--portal-soft:#c2ccd7;
+  --portal-ink:#1d2d3d;--portal-muted:#3e4e60;--portal-line:#8796a6;
+  --portal-link:#183f64;--portal-action:#29455f;
+}
+html[data-portal-app="ccna"] :is(.note-table-wrap,.note-table){
+  background:var(--portal-surface)!important;color:var(--portal-ink)!important;border-color:var(--portal-line)!important;
+}
+html[data-portal-app="ccna"] .note-table :is(td,th){border-color:var(--portal-line)!important}
+html[data-portal-app="ccna"] .note-table td{
+  background:var(--portal-surface)!important;color:var(--portal-ink)!important;
+}
+html[data-portal-app="ccna"] .note-table th{
+  background:var(--portal-action)!important;color:#fff!important;
+}
+html[data-portal-app="ccna"] .note-table :is(td,th) :is(strong,b,span,code){color:inherit!important}
+html[data-portal-app="ccna"] .note-table td a{color:var(--portal-link)!important}
+html[data-portal-app="ccna"] .lab-catalog{display:grid;gap:26px}
+html[data-portal-app="ccna"] .lab-catalog-group>h3{margin:0 0 12px;color:var(--portal-ink)}
+
+
+/* CCNA: dark note tables and a visibly gray (not white) third theme. */
+html[data-portal-theme="gray"][data-portal-app="ccna"] {
+  --portal-bg:#b9c2cb;--portal-surface:#dce2e8;--portal-soft:#ccd5dd;
+  --portal-ink:#1e2b3a;--portal-muted:#415164;--portal-line:#8c9ba9;
+}
+html[data-portal-theme="gray"][data-portal-app="ccna"] body {background:#b9c2cb!important}
+html[data-portal-theme="gray"][data-portal-app="ccna"] :is(.hero,.section-card,.module-card,.admin-section-card,.note-card,.subsection-row,.progress-panel) {background:#dce2e8!important}
+html[data-portal-theme="blue"][data-portal-app="ccna"] :is(#moduleContent,#subsectionModeContent,#sectionContent,.note-card,.note-lead) :is(table,thead,tbody,tr,td,th){
+  background:#142d43!important;color:#f3f8ff!important;border-color:#6d8caa!important;
+}
+html[data-portal-theme="blue"][data-portal-app="ccna"] :is(#moduleContent,#subsectionModeContent,#sectionContent,.note-card,.note-lead) table :is(p,span,a,strong,em){
+  color:#f3f8ff!important;
+}
+html[data-portal-theme="blue"][data-portal-app="ccna"] :is(#moduleContent,#subsectionModeContent,#sectionContent,.note-card,.note-lead) table a {text-decoration:underline}
+html[data-portal-app="ccna"] .ccna-section-number {font-weight:850;margin-right:.35em;white-space:nowrap}
+html[data-portal-app="ccna"] .ccna-laboratory-link {margin:18px 0;padding:18px;border:1px solid var(--portal-line);background:var(--portal-surface);color:var(--portal-ink);border-radius:14px}
+html[data-portal-app="ccna"] .ccna-laboratory-link :is(h3,p) {color:var(--portal-ink)!important}
+html[data-portal-app="ccna"] .ccna-laboratory-link button {min-height:40px;padding:8px 14px;border-radius:9px;background:var(--portal-action);color:var(--portal-on-action,#fff);border:0;cursor:pointer;font-weight:700}
+
+
+/* Portal-wide gray theme: calmer, unmistakably gray and still readable. */
+html[data-portal-theme="gray"]{
+  --portal-bg:#c2cad2;--portal-surface:#dce2e8;--portal-soft:#ccd5de;
+  --portal-ink:#1f2b39;--portal-muted:#425265;--portal-line:#8e9dad;
+  --portal-link:#234961;--portal-action:#364d61;--portal-on-action:#fff;
+}
+html[data-portal-theme="gray"] body{background-color:var(--portal-bg)!important;color:var(--portal-ink)!important}
+html[data-portal-theme="gray"] :is(.portal-preferences,.portal-home-link){background:#dce2e8!important;color:#1f2b39!important;border-color:#8e9dad!important}
+html[data-portal-theme="gray"] body.portal-home :is(.site-header,.hero-panel,.app-card,.how-card){background:#dce2e8!important;color:#1f2b39!important;border-color:#8e9dad!important}
+html[data-portal-theme="gray"] body.account-page :is(.account-hero,.panel-card,.admin-card){background:#dce2e8!important;border-color:#8e9dad!important}
