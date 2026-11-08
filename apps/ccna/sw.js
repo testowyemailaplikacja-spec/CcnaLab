@@ -13,12 +13,13 @@ const APP_ID="ccna";
 // WIEDORA-CHANGE: WD-20261031-WIE-195-POSTDRAG-KEYBOARD-01 | TASK: WIE-195 | AUTHOR: Codex / GPT-6 (full version unknown)
 // WIEDORA-CHANGE: WD-20261031-WIE-157-ERROR-PATH-ROOT-01 | TASK: WIE-157 | AUTHOR: ChatGPT / GPT-6
 // WIEDORA-CHANGE: WD-20261101-WIE-161-CCNA-GATING-01 | TASK: WIE-161 | AUTHOR: ChatGPT / GPT-6
-const CACHE_NAME="portal-offline-"+APP_ID+"-20261108-ccna-content-modules-1";
+const CACHE_NAME="portal-offline-"+APP_ID+"-20261108-ccna-modules-day02-quality-2";
 const APP_ROOT="/apps/"+APP_ID+"/";
 const INDEX=APP_ROOT+"index.html";
 const ASSETS=["/assets/vendor/supabase-2.117.2.js","./","./index.html","./legacy.html","./legacy.html?v=20261101-ccna-qualification-1","./data/terminology.js?v=20261101-ccna-qualification-1","./data/jitl-labs.js?v=20261019-course-audit-1","/js/supabase-client.js","/js/platform-data.js?v=20261101-preferences-cas-3","/js/error-monitor.js?v=20261031-errorpath-1","/js/ai-core.js?v=20261002-platform-2","/assets/ai-core.css?v=20261002-1","/js/user-presence.js","/js/progress-storage.js","./question-pool-visibility.js?v=20261101-question-pool-restore-1","./router.js?v=20261030-targets-1","./bug-fixes.js?v=20261101-ccna-main-source-hidden-1","./packet-lab/integration.js?v=20261031-day02-guest-1","./packet-lab/devices.js?v=20261024-bugfix-1","./packet-lab/ethernet.js?v=20261024-bugfix-1","./packet-lab/protocols.js?v=20261024-bugfix-1","./packet-lab/wireless.js?v=20261024-bugfix-1","./packet-lab/protocol-cli.js?v=20261024-bugfix-1","./packet-lab/cli.js?v=20261024-bugfix-1","./packet-lab/engine.js?v=20261024-bugfix-1","./packet-lab/curriculum.js?v=20261024-bugfix-1","./packet-lab/scenario-extensions.js?v=20261024-bugfix-1","./packet-lab/scenarios.js?v=20261024-bugfix-1","./packet-lab/wlc-ui.js?v=20261024-bugfix-1","./packet-lab/lab.js?v=20261031-postdrag-keyboard-1","./packet-lab/lab.css?v=20261024-bugfix-1","../shared/content-protection.js","../shared/account-sync.js","../shared/guest-access.js?v=20261029-guest-free-1","../shared/portal-nav.css?v=20261024-bugfix-1","../shared/portal-nav.js","../shared/offline-control.css","../shared/offline-control.js","./manifest.webmanifest","./icon.svg"];
 ASSETS.push("../shared/study-mode.js","../shared/study-mode.css","../shared/study-frame.js?v=20261102-section-review-3","./study-adapter.js?v=20261102-section-review-3");
 ASSETS.push("./data/modules/day03-tcpip.js?v=20261108-module-1","./lesson-overlay.js?v=20261108-module-1");
+ASSETS.push("./answer-quality.js?v=20261106-section1-answer-quality-1");
 
 async function notify(client,type,extra={}){
   try{client&&client.postMessage({type,appId:APP_ID,...extra})}catch{}
