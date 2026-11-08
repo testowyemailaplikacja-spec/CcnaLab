@@ -1,0 +1,234 @@
+{
+  "schemaVersion": 1,
+  "createdOn": "2026-10-31",
+  "status": "DEFERRED_NOT_LOADED_IN_APP",
+  "course": "CCNA",
+  "sourceLesson": "Jeremy's IT Lab Day 02 — Interfaces and Cables",
+  "sourceVideo": "https://www.youtube.com/watch?v=ieTH5lVhNaY",
+  "reason": "Day 02 video-based theory has no Packet Tracer topology exercise or R1-R2/R3-R4 specific lab distances. Removed from the theory course only; kept here with unchanged question IDs for a future independent lab or relocation review.",
+  "originalCourseSectionId": "interfejsy-sieciowe-i-okablowanie",
+  "removedSubsection": {
+    "originalOrdinal": "1.6",
+    "recommendedDestination": "future standalone Packet Tracer Lab / not the Day 02 lesson",
+    "originalFullRecord": {
+      "id": "topologia-laboratorium",
+      "title": "Topologia z laboratorium Packet Tracer",
+      "description": "Kolejność i rodzaje połączeń wykonanych w ćwiczeniu.",
+      "type": "learning-subsection",
+      "note": "<div class=\"study-note\"><div class=\"note-lead\"><strong>Cel ćwiczenia:</strong> połączyć topologię w Cisco Packet Tracer, wybierając właściwy typ medium i odpowiedni interfejs.</div>\n<h4>1. Hosty do przełączników — przewód prosty</h4><ol><li>PC1 → SW3</li><li>PC2 → SW4</li><li>PC3 → SW7</li><li>SRV1 → SW8</li></ol><p>Na komputerze wybierany jest interfejs <strong>FastEthernet0</strong>, czyli karta sieciowa hosta, a na przełączniku dowolny dostępny port FastEthernet.</p>\n<h4>2. Przełączniki między sobą — przewód krosowany</h4><ol><li>SW3 → SW1</li><li>SW1 → SW2</li><li>SW4 → SW2</li><li>SW7 → SW5</li><li>SW5 → SW6</li><li>SW8 → SW6</li></ol>\n<h4>3. Przełączniki do routerów — przewód prosty</h4><ol><li>SW1 → R2</li><li>SW2 → R2</li><li>SW5 → R4</li><li>SW6 → R4</li></ol>\n<h4>4. Routery między sobą</h4><ul><li><strong>R1–R2, 50 m:</strong> miedziany przewód krosowany.</li><li><strong>R1–R3, 3 km:</strong> single-mode fiber (SMF).</li><li><strong>R3–R4, 250 m:</strong> multimode fiber (MMF).</li></ul>\n<h4>5. Packet Tracer</h4><p>W dolnym panelu programu wybiera się typ połączenia: <strong>Copper Straight-Through</strong>, <strong>Copper Cross-Over</strong> lub <strong>Fiber</strong>. Packet Tracer w tym ćwiczeniu nie rozróżnia multimode fiber (MMF) i single-mode fiber (SMF), dlatego właściwy typ światłowodu trzeba określić samodzielnie na podstawie odległości.</p>\n<div class=\"note-keypoints\"><strong>Co ćwiczy to laboratorium?</strong><ol><li>Rozpoznanie interfejsu hosta.</li><li>Dobór przewodu do rodzaju urządzeń.</li><li>Dobór medium do dystansu.</li><li>Świadome odróżnienie ograniczeń symulatora od rzeczywistej sieci.</li></ol></div></div>",
+      "lab": {
+        "title": "Mini laboratorium: dobierz połączenia",
+        "instructions": "Dla każdego połączenia wybierz właściwy przewód lub medium. Załóż, że Auto MDI-X jest wyłączone.",
+        "downloadUrl": "https://jitl.jp/ccna-files",
+        "packetTracerUrl": "https://www.netacad.com/cisco-packet-tracer",
+        "scenarios": [
+          {
+            "left": "PC1",
+            "right": "SW3",
+            "distance": "5 m",
+            "answer": "straight",
+            "explanation": "PC i przełącznik nadają na różnych parach — przewód prosty."
+          },
+          {
+            "left": "SW1",
+            "right": "SW2",
+            "distance": "10 m",
+            "answer": "crossover",
+            "explanation": "Dwa przełączniki — przy braku Auto MDI-X przewód krosowany."
+          },
+          {
+            "left": "SW1",
+            "right": "R2",
+            "distance": "20 m",
+            "answer": "straight",
+            "explanation": "Router zachowuje się jak PC, a switch nadaje na parach przeciwnych — przewód prosty."
+          },
+          {
+            "left": "R1",
+            "right": "R2",
+            "distance": "50 m",
+            "answer": "crossover",
+            "explanation": "Dwa routery i dystans do 100 m — miedziany przewód krosowany."
+          },
+          {
+            "left": "R3",
+            "right": "R4",
+            "distance": "250 m",
+            "answer": "mmf",
+            "explanation": "Za daleko dla UTP, ale w zasięgu multimode fiber (MMF)."
+          },
+          {
+            "left": "R1",
+            "right": "R3",
+            "distance": "3 km",
+            "answer": "smf",
+            "explanation": "Połączenie liczone w kilometrach wymaga single-mode fiber (SMF)."
+          }
+        ]
+      },
+      "questions": [
+        {
+          "id": "lu-08",
+          "question": "Który interfejs PC wybierano w laboratorium Packet Tracer?",
+          "answer": "FastEthernet0.",
+          "answers": [
+            "FastEthernet0.",
+            "Console0.",
+            "Serial0.",
+            "Loopback0."
+          ]
+        },
+        {
+          "id": "lu-09",
+          "question": "Jakim przewodem połączono PC1 z SW3?",
+          "answer": "Miedzianym przewodem prostym.",
+          "answers": [
+            "Miedzianym przewodem prostym.",
+            "Miedzianym przewodem krosowanym.",
+            "Światłowodem jednomodowym.",
+            "Przewodem konsolowym."
+          ]
+        },
+        {
+          "id": "lu-10",
+          "question": "Jakim przewodem połączono SW1 z SW2?",
+          "answer": "Miedzianym przewodem krosowanym.",
+          "answers": [
+            "Miedzianym przewodem krosowanym.",
+            "Miedzianym przewodem prostym.",
+            "Światłowodem wielomodowym.",
+            "Przewodem rollover."
+          ]
+        },
+        {
+          "id": "lu-11",
+          "question": "Jakim przewodem połączono SW1 z R2?",
+          "answer": "Miedzianym przewodem prostym.",
+          "answers": [
+            "Miedzianym przewodem prostym.",
+            "Miedzianym przewodem krosowanym.",
+            "Wyłącznie światłowodem.",
+            "Przewodem konsolowym."
+          ]
+        },
+        {
+          "id": "lu-12",
+          "question": "Czy Packet Tracer w tym laboratorium odróżniał multimode fiber (MMF) od single-mode fiber (SMF)?",
+          "answer": "Nie. Program udostępniał ogólne połączenie światłowodowe.",
+          "answers": [
+            "Nie. Program udostępniał ogólne połączenie światłowodowe.",
+            "Tak, zawsze wymuszał wybór multimode fiber (MMF) lub single-mode fiber (SMF).",
+            "Tak, ale tylko dla routerów.",
+            "Nie, ponieważ nie obsługiwał żadnego światłowodu."
+          ]
+        },
+        {
+          "id": "lu-13",
+          "question": "Dlaczego w laboratorium trzeba było samodzielnie rozróżnić multimode fiber (MMF) i single-mode fiber (SMF)?",
+          "answer": "Ponieważ symulator nie rozróżniał tych typów, ale w rzeczywistej sieci dobór zależy od odległości i modułów.",
+          "answers": [
+            "Ponieważ symulator nie rozróżniał tych typów, ale w rzeczywistej sieci dobór zależy od odległości i modułów.",
+            "Ponieważ oba typy zawsze mają identyczny zasięg.",
+            "Ponieważ multimode fiber (MMF) jest przewodem miedzianym.",
+            "Ponieważ rodzaj włókna zależy wyłącznie od adresu IP."
+          ]
+        }
+      ]
+    }
+  },
+  "removedQuestionsFromMedia": {
+    "originalOrdinal": "1.7",
+    "originalSubsectionId": "dobor-medium-do-odleglosci",
+    "recommendedDestination": "future separate Packet Tracer practical/medium-selection lab or an independently sourced practice question bank",
+    "items": [
+      {
+        "reason": "Refers to R1–R2, R1–R3, R3–R4 or 50/250 m practice topology not presented in Day 02 source video.",
+        "originalRecord": {
+          "id": "lu-14",
+          "question": "Jakie medium wybrano dla routerów oddalonych o 50 metrów?",
+          "answer": "Miedziany przewód krosowany.",
+          "answers": [
+            "Miedziany przewód krosowany.",
+            "Single-mode fiber (SMF).",
+            "Multimode fiber (MMF).",
+            "Przewód konsolowy."
+          ]
+        }
+      },
+      {
+        "reason": "Refers to R1–R2, R1–R3, R3–R4 or 50/250 m practice topology not presented in Day 02 source video.",
+        "originalRecord": {
+          "id": "lu-15",
+          "question": "Dlaczego dla R1–R2 oddalonych o 50 m można użyć miedzi?",
+          "answer": "Ponieważ 50 m mieści się w limicie 100 m miedzianego Ethernetu.",
+          "answers": [
+            "Ponieważ 50 m mieści się w limicie 100 m miedzianego Ethernetu.",
+            "Ponieważ miedź działa bez limitu odległości.",
+            "Ponieważ routery skracają przewód.",
+            "Ponieważ każdy przewód krosowany działa do 3 km."
+          ]
+        }
+      },
+      {
+        "reason": "Refers to R1–R2, R1–R3, R3–R4 or 50/250 m practice topology not presented in Day 02 source video.",
+        "originalRecord": {
+          "id": "lu-16",
+          "question": "Jakie medium jest odpowiednie dla połączenia R1–R3 o długości 3 km?",
+          "answer": "Single-mode fiber (SMF).",
+          "answers": [
+            "Single-mode fiber (SMF).",
+            "UTP.",
+            "Światłowód wielomodowy jako jedyny poprawny wybór.",
+            "Przewód prosty Cat 5."
+          ]
+        }
+      },
+      {
+        "reason": "Refers to R1–R2, R1–R3, R3–R4 or 50/250 m practice topology not presented in Day 02 source video.",
+        "originalRecord": {
+          "id": "lu-18",
+          "question": "Jakie medium wybrano dla połączenia R3–R4 o długości 250 m?",
+          "answer": "Multimode fiber (MMF).",
+          "answers": [
+            "Multimode fiber (MMF).",
+            "UTP.",
+            "Wyłącznie single-mode fiber (SMF).",
+            "Przewód krosowany miedziany."
+          ]
+        }
+      },
+      {
+        "reason": "Refers to R1–R2, R1–R3, R3–R4 or 50/250 m practice topology not presented in Day 02 source video.",
+        "originalRecord": {
+          "id": "lu-19",
+          "question": "Dlaczego UTP nie jest właściwy dla połączenia o długości 250 m?",
+          "answer": "Ponieważ przekracza limit 100 m miedzianego Ethernetu.",
+          "answers": [
+            "Ponieważ przekracza limit 100 m miedzianego Ethernetu.",
+            "Ponieważ UTP działa tylko do 10 m.",
+            "Ponieważ UTP nie obsługuje routerów.",
+            "Ponieważ UTP wymaga światła."
+          ]
+        }
+      },
+      {
+        "reason": "Generic workflow includes device-cabling choices not specific to the video-derived distance-only 1.6 section",
+        "originalRecord": {
+          "id": "lu-20",
+          "question": "Jaka jest właściwa kolejność doboru medium w zadaniu sytuacyjnym?",
+          "answer": "Najpierw odległość i wymagania medium, potem typ urządzeń i właściwe zakończenie połączenia.",
+          "answers": [
+            "Najpierw odległość i wymagania medium, potem typ urządzeń i właściwe zakończenie połączenia.",
+            "Najpierw adres IP, potem kolor przewodu.",
+            "Wyłącznie producent urządzeń.",
+            "Losowy wybór przewodu i sprawdzenie, czy działa."
+          ]
+        }
+      }
+    ]
+  },
+  "keptInMedia": [
+    "lu-17"
+  ],
+  "rules": "Do not import this JSON automatically. Reassign only after source review, and preserve question IDs to retain future progress mappings."
+}

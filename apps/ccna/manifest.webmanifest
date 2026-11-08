@@ -1,0 +1,19 @@
+{
+  "id": "/apps/ccna/",
+  "name": "Akademia cyberbezpieczeństwa — CCNA",
+  "short_name": "CCNA",
+  "start_url": "/apps/ccna/",
+  "scope": "/apps/ccna/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#087f8c",
+  "description": "Tryb offline dla Akademia cyberbezpieczeństwa — CCNA.",
+  "icons": [
+    {
+      "src": "/apps/ccna/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
