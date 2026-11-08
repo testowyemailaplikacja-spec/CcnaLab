@@ -22,6 +22,9 @@
 | `tests/ccnalab-contract.test.mjs` | 13 przypadków jakości i deriveAB |
 | `tests/ccnalab-assets.test.mjs` | 4 przypadki skanera hostowych zasobów |
 | `tests/ccnalab-workflow.test.mjs` | 7 przypadków kolejności i statusów |
+| `scripts/build-ccna-lesson-pack.mjs` i `tests/ccnalab-pack.test.mjs` | Jeden bank kart jako źródło fiszek, A/B i ABCD (4 testy) |
+| `docs/CCNALAB_PROTECTED_ORIGINAL_FILES.json` i `scripts/ccnalab-baseline-check.mjs` | Ochrona 37 źródłowych plików przed przypadkową zmianą |
+| `.gitignore` i `README.md` | Ignorowanie lokalnych sekretów i szybki dostęp do planu z repo |
 | `package.json`, `package-lock.json` | Minimalne, bezpieczne skrypty bez niezatwierdzonych bibliotek |
 
 **Nie zmieniono:** `apps/ccna/legacy.html`, `index.html`, `sw.js`, `router.js`, silnika `Packet Lab`, żadnych danych bieżącego kursu, ID, kluczy localStorage, wyglądu i laboratoriów. GitHub compare develop...branch potwierdził **0 zmienionych plików w `apps/ccna/`**.
@@ -34,6 +37,10 @@
 - **43** unikalne statyczne ścieżki zasobów: **24 istnieją**, **19 brakuje**. Jest to istotna blokada samodzielnego uruchomienia.
 - W pierwotnej wersji walidatora wykryto, że usunięcie interpunkcji scala `12,5` i `1,25`. Po poprawieniu normalizacji test 13/13 PASS.
 - JSON schematu i rejestru statusów parsuje się poprawnie.
+
+- **4/4 PASS (isolated V8):** nowy eksporter pakietu treści ze wspólnego banku fiszek, A/B i ABCD bez zmiany identyfikatorów i laboratorium. Wykryto i usunięto zależność od niedostępnego `structuredClone` w środowisku izolowanym.
+- **37 oryginalnych plików CCNA:** dodany manifest Git blob SHA oraz skrypt guard do wykrywania zmian bez audytu. Native Node guard: NOT_RUN, GitHub compare branch→develop: 0 zmian w apps/ccna/.
+- **Suma izolowanych przypadków: 28/28 PASS**, tj. 13 kontrakt, 4 skaner, 7 workflow, 4 eksporter.
 
 **Uwaga o dowodach:** wykonano izolowaną kontrolę kodu w V8 ze źródeł GitHub. Nie uruchomiono natywnego `node --test`, `npm ci`, `jsdom`, `Playwright`, przeglądarki ani wdrożenia. Dlatego **nie ma formalnego PASS pakietu P0, P1 lub P2**.
 
