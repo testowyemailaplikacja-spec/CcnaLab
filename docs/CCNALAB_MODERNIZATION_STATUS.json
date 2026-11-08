@@ -25,7 +25,8 @@
         "37/37 copied CCNA files identical to source develop (baseline 2026-11-08)",
         "19 missing host asset references verified by static asset audit in isolated V8",
         "Asset-audit test scenarios 4/4 PASS isolated V8; native Node NOT_RUN",
-        "No existing apps/ccna files changed versus develop"
+        "No existing apps/ccna files changed versus develop",
+        "37 original apps/ccna files preserved as SHA baseline; guard added, native execution NOT_RUN"
       ],
       "blockers": [
         "19 required host paths unresolved",
@@ -41,7 +42,8 @@
       "evidence": [
         "schemas/ccna-lesson.schema.json added",
         "scripts/validate-ccna-lesson.mjs: authoring contract and deriveAB",
-        "13/13 authoring tests PASS isolated V8; numeric-normalization defect detected and fixed"
+        "13/13 authoring tests PASS isolated V8; numeric-normalization defect detected and fixed",
+        "scripts/build-ccna-lesson-pack.mjs derives flashcard, AB and ABCD from one source card; 4/4 isolated V8 PASS"
       ],
       "blockers": [
         "Schema not yet connected to existing UI/runtime",
@@ -88,9 +90,9 @@
   "tests": {
     "isolatedV8": {
       "status": "PASS",
-      "cases": 24,
+      "cases": 28,
       "failures": 0,
-      "scope": "contract 13, asset checks 4, workflow 7; converted ESM logic, not native Node"
+      "scope": "contract 13, asset checks 4, workflow 7, lesson pack 4; isolated JS, NOT native Node"
     },
     "node": "NOT_RUN",
     "jsdom": "NOT_RUN",
@@ -101,7 +103,8 @@
       "missing": 19,
       "existing": 24,
       "references": 43
-    }
+    },
+    "originalFileShaGuard": "NOT_RUN (GitHub compare confirms 0 changes to apps/ccna on feature branch)"
   },
   "completedAt": null,
   "finalReport": null,
