@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>CCNA Lab — niezależne środowisko kursu</title>
+<style>
+:root{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color-scheme:dark;background:#0b1220;color:#edf4ff}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;padding:24px;background:radial-gradient(circle at 80% 0,#17294b,#0b1220 60%)}
+main{max-width:690px;width:100%;border:1px solid #34445b;border-radius:24px;padding:clamp(24px,5vw,42px);background:#111d31;box-shadow:0 16px 64px #050c1870}
+small{font-weight:750;letter-spacing:.14em;color:#89cae6}h1{font-size:clamp(30px,4vw,46px);line-height:1.12;margin:18px 0}p{line-height:1.65;color:#bbc9db}
+button,a.action{font:inherit;cursor:pointer;text-decoration:none;display:inline-flex;justify-content:center;align-items:center;min-height:44px;padding:12px 18px;border-radius:12px;border:1px solid #58718f;color:#edf4ff;background:#1b314e}
+a.action{background:#087f8c;border-color:#087f8c;font-weight:750}button:hover,a.action:hover{filter:brightness(1.15)}
+.actions{display:flex;flex-wrap:wrap;gap:12px;margin:24px 0 12px}.notes{margin-top:26px;border-top:1px solid #34445b;padding-top:12px;font-size:14px}
+#status{min-height:1.5em;color:#b3e4cb}input{display:none}
+</style>
+</head>
+<body>
+<main>
+<small>CCNA LAB · ŚRODOWISKO NIEZALEŻNE</small>
+<h1>Akademia cyberbezpieczeństwa — CCNA</h1>
+<p>Ta kopia pozwala rozwijać kurs i Packet Lab poza Wiedorą. Zawartość aplikacji i istniejący interfejs nauki znajdują się pod dotychczasowym adresem <code>/apps/ccna/</code>.</p>
+<div class="actions">
+<a class="action" href="/apps/ccna/">Otwórz kurs CCNA</a>
+<button id="export" type="button">Eksportuj lokalny postęp</button>
+<button id="import" type="button">Importuj lokalny postęp</button>
+<input id="file" type="file" accept=".json,application/json">
+</div>
+<p id="status" role="status" aria-live="polite"></p>
+<section class="notes">
+<p><strong>Tryb lokalny.</strong> Postępy są przechowywane w tej przeglądarce. Logowanie, synchronizacja między urządzeniami, AI i inne usługi konta Wiedory wymagają ponownej integracji z jej backendem. Nie są tu symulowane.</p>
+<p>Przed zmianą urządzenia wyeksportuj postępy. Import wymaga potwierdzenia i nie wysyła pliku na serwer.</p>
+</section>
+</main>
+<script>
+(() => {
+'use strict';
+const keys=['ccna-learning-progress-v1','ccna-spaced-review-v1','ccna-packet-labs-v1','ccna-unified-study-v1'];
+const el=id=>document.getElementById(id);
+function exportData(){
+ const storage={};for(const key of keys)storage[key]=localStorage.getItem(key);
+ const data={format:'ccnalab-progress-v1',appId:'ccna',exportedAt:new Date().toISOString(),storage};
+ const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
+ const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='ccna-postep-'+new Date().toISOString().slice(0,10)+'.json';a.click();URL.revokeObjectURL(url);
+ el('status').textContent='Zapisano kopię lokalnego postępu.';
+}
+el('export').addEventListener('click',()=>{try{exportData();}catch(e){el('status').textContent='Nie można wyeksportować danych: '+e.message;}});
+el('import').addEventListener('click',()=>el('file').click());
+el('file').addEventListener('change',async event=>{
+ const file=event.target.files?.[0];if(!file)return;
+ try{
+  if(file.size>2_000_000)throw new Error('Plik przekracza 2 MB.');
+  const data=JSON.parse(await file.text());
+  if(data.format!=='ccnalab-progress-v1'||data.appId!=='ccna'||!data.storage||typeof data.storage!=='object'||Array.isArray(data.storage))throw new Error('Niepoprawny format CCNA.');
+  for(const [key,value] of Object.entries(data.storage))if(!keys.includes(key)||(value!==null&&typeof value!=='string'))throw new Error('Niepoprawny klucz lub wartość: '+key);
+  if(!confirm('Import zastąpi zapisane dane wskazanych obszarów CCNA na tym urządzeniu. Kontynuować?'))return;
+  const before=Object.fromEntries(keys.map(key=>[key,localStorage.getItem(key)]));
+  try{for(const [key,value] of Object.entries(data.storage)){if(value===null)localStorage.removeItem(key);else localStorage.setItem(key,value);}}
+  catch(e){for(const [key,value] of Object.entries(before)){if(value===null)localStorage.removeItem(key);else localStorage.setItem(key,value);}throw e;}
+  el('status').textContent='Postęp zaimportowany. Otwórz kurs ponownie, aby wczytać dane.';
+ }catch(e){el('status').textContent='Import nieudany: '+e.message;}
+ finally{el('file').value='';}
+});
+})();
+</script>
+</body>
+</html>
