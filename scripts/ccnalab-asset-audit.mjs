@@ -49,7 +49,11 @@ export function auditAssets({root=ROOT,index,sw}={}) {
 
 const main=process.argv[1] && path.resolve(process.argv[1])===fileURLToPath(import.meta.url);
 if(main){
-  const result=auditAssets();
-  console.log(JSON.stringify(result,null,2));
+  const at=process.argv.indexOf('--root');
+  if(at>=0&&(!process.argv[at+1]||process.argv[at+1].startsWith('--')))throw new Error('Use --root path');
+  const root=at>=0?path.resolve(ROOT,process.argv[at+1]):ROOT;
+  if(root!==ROOT&&!root.startsWith(ROOT+path.sep))throw new Error('Audit root must stay within repository');
+  const result=auditAssets({root});
+  console.log(JSON.stringify({root:path.relative(ROOT,root)||'.',...result},null,2));
   if(process.argv.includes('--strict')&&result.missing.length)process.exitCode=1;
 }
