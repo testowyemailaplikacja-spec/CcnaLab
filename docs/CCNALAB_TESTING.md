@@ -26,3 +26,9 @@ To uruchamia wstępną bramkę strukturalną: notatkę ze źródłem i czasem, m
 3. Dodanie bezpiecznych, przypiętych zależności `jsdom` / `playwright` i poprawnego lockfile w kolejnym PR.
 4. Regresja browser/desktop/mobile i autentyczne uruchomienie nowej aplikacji, wszystkie moduły i postępy.
 5. Dopiero potem merge do develop. Nie zmieniać wyglądu lub funkcji w tym kroku.
+
+## Dodatkowe narzędzia P0/P1
+
+`npm run audit:baseline` kontroluje zgodność 37 oryginalnych plików CCNA względem SHA z `docs/CCNALAB_PROTECTED_ORIGINAL_FILES.json`. To mechanizm wykrycia przypadkowej zmiany, **nie** dowód zachowania funkcji. Przy świadomej migracji zmiana manifestu musi być jawna, recenzowana i potwierdzona regresją.
+
+`npm run build:lesson-pack -- path/to/lesson.json path/to/output.json` generuje z jednego banku pytań pochodne fiszki/A-B/ABCD i przenosi dedykowane laboratorium do pakietu treści. Nie wpina go jeszcze do obecnego UI; nie nadpisuje istniejącego pliku wynikowego.
