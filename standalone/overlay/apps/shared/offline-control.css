@@ -1,0 +1,31 @@
+.offline-control{
+  position:fixed;left:max(12px,env(safe-area-inset-left));bottom:64px;z-index:2147483646;
+  display:flex;align-items:center;gap:8px;min-height:42px;padding:9px 13px;
+  border:1px solid rgba(148,163,184,.35);border-radius:13px;background:rgba(255,255,255,.94);
+  color:#172033;font:700 13px/1 system-ui,-apple-system,"Segoe UI",sans-serif;
+  box-shadow:0 10px 30px rgba(15,23,42,.16);backdrop-filter:blur(12px);
+  transition:transform .16s ease,box-shadow .16s ease,border-color .16s ease
+}
+.offline-control:hover{transform:translateY(-2px);box-shadow:0 14px 34px rgba(15,23,42,.2);border-color:rgba(100,116,139,.55)}
+.offline-control:focus-visible{outline:3px solid rgba(79,108,232,.28);outline-offset:2px}
+.offline-control[disabled]{cursor:wait;opacity:.78;transform:none}
+.offline-control .offline-icon{font-size:15px;line-height:1}
+.offline-control .offline-label{white-space:nowrap}
+.offline-control.ready{background:rgba(236,253,245,.96);border-color:#b7e7cd;color:#166534}
+.offline-control.offline-now{background:rgba(255,247,230,.97);border-color:#f0d49a;color:#7a4d05}
+.offline-control.error{background:rgba(254,242,242,.97);border-color:#fecaca;color:#991b1b}
+.offline-toast{
+  position:fixed;left:max(12px,env(safe-area-inset-left));bottom:116px;z-index:2147483647;
+  width:min(360px,calc(100vw - 24px));padding:12px 14px;border-radius:13px;background:#172033;color:#fff;
+  font:600 12px/1.45 system-ui,-apple-system,"Segoe UI",sans-serif;box-shadow:0 15px 35px rgba(15,23,42,.24)
+}
+.offline-toast[hidden]{display:none}
+@media(prefers-color-scheme:dark){
+  .offline-control{background:rgba(16,24,40,.94);color:#f8fafc;border-color:rgba(255,255,255,.16)}
+  .offline-control.ready{background:rgba(19,78,54,.95);color:#dcfce7;border-color:#2f8563}
+  .offline-control.offline-now{background:rgba(85,54,8,.95);color:#fef3c7;border-color:#9a6a16}
+}
+@media(max-width:520px){
+  .offline-control{left:9px;bottom:58px;min-height:40px;padding:8px 11px;font-size:12px}
+  .offline-toast{left:9px;bottom:108px;width:calc(100vw - 18px)}
+}
