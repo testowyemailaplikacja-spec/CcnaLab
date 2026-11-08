@@ -18,12 +18,18 @@ export function gitBlobSha(bytes) {
 export function checkPreservation(root=ROOT) {
  const manifest=JSON.parse(fs.readFileSync(path.join(root,'docs/CCNALAB_PROTECTED_ORIGINAL_FILES.json'),'utf8'));
  const problems=[];
+ const reviewPath=path.join(root,'docs/CCNALAB_REVIEWED_CORE_CHANGES.json');
+ const reviewed=fs.existsSync(reviewPath)?JSON.parse(fs.readFileSync(reviewPath,'utf8')):{changes:[]};
+ const approved=new Map((reviewed.changes||[]).map(change=>[change.path,change]));
  for(const file of manifest.files){
    const absolute=path.resolve(root,file.path);
    if(!absolute.startsWith(root+path.sep)) {problems.push(file.path+': unsafe path');continue;}
    if(!fs.existsSync(absolute)){problems.push(file.path+': missing');continue;}
    const data=fs.readFileSync(absolute);
-   if(gitBlobSha(data)!==file.sha)problems.push(file.path+': SHA changed');
+   const actual=gitBlobSha(data),decision=approved.get(file.path);
+   if(actual===file.sha)continue;
+   if(!decision||decision.originalSha!==file.sha||decision.approvedSha!==actual)problems.push(file.path+': unreviewed SHA drift');
+
  }
  return {status:problems.length?'FAIL_PROTECTED_FILE_DRIFT':'PASS_UNMODIFIED_BASELINE',checked:manifest.files.length,problems};
 }

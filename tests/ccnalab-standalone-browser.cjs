@@ -34,6 +34,9 @@ const server=http.createServer((req,res)=>{
     return w?.document?.readyState==='complete'&&typeof w.getLearningSections==='function';
   },{timeout:30000});
   assert.ok(await page.evaluate(()=>document.getElementById('appFrame').contentWindow.getLearningSections().length)>5);
+  await page.waitForFunction(()=>window.CCNALabModuleBridge?.status().some(item=>item.result==='ACTIVE'),{timeout:30000});
+  const moduleStatus=await page.evaluate(()=>window.CCNALabModuleBridge.status());
+  assert.ok(moduleStatus.some(item=>item.subsectionId==='piec-warstw-tcp-ip'&&item.result==='ACTIVE'));
   assert.equal(await page.evaluate(()=>window.CCNALabRuntime.mode),'standalone');
   assert.equal(await page.evaluate(()=>window.AppSupabase),null);
   assert.equal(await page.locator('#appFrame').count(),1);

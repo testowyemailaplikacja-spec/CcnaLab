@@ -50,10 +50,10 @@ test('independent build and Wiedora export preserve the original course but isol
   assert.match(newIndex,/noindex,nofollow/);
   assert.doesNotMatch(newIndex,/https:\/\/constant-app\.netlify\.app\/apps\/ccna\//);
   const exported=prepareWiedoraExport({root:temp});
-  assert.equal(exported.modifiedAgainstOriginal.length,0);
-  assert.equal(exported.addedAgainstOriginal.length,0);
+  assert.deepEqual(exported.modifiedAgainstOriginal.map(x=>x.path),['apps/ccna/index.html','apps/ccna/sw.js']);
+  assert.deepEqual(exported.addedAgainstOriginal.map(x=>x.path),['apps/ccna/data/modules/day03-tcpip.js','apps/ccna/lesson-overlay.js']);
   assert.equal(exported.removedAgainstOriginal.length,0);
-  assert.equal(exported.files,37);
+  assert.equal(exported.files,39);
   assert.deepEqual(fs.readFileSync(path.join(temp,'dist-wiedora/apps/ccna/index.html')),fs.readFileSync(path.join(temp,'apps/ccna/index.html')));
   assert.equal(fs.existsSync(path.join(temp,'dist-wiedora/apps/shared')),false);
   assert.equal(fs.existsSync(path.join(temp,'dist-wiedora/js')),false);

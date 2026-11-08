@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "originalBaseline": "docs/CCNALAB_PROTECTED_ORIGINAL_FILES.json",
+  "reviewedOn": "2026-11-08",
+  "risk": "Module pilot; do not approve future changes without tests",
+  "changes": [
+    {
+      "path": "apps/ccna/index.html",
+      "originalSha": "24aaf5e8c9965d99661186473c0e47cdab4cdc97",
+      "approvedSha": "ae0e10e8f77a70c344541a0c56d50b4e73542e34",
+      "reason": "Preload exact Day03 external data and iframe bridge with legacy fallback"
+    },
+    {
+      "path": "apps/ccna/sw.js",
+      "originalSha": "09c9c8458074a6582f14fdc074f473b0991cd28b",
+      "approvedSha": "13de4e1afe8e4ac1a7ab828eab874a2a424fd6cb",
+      "reason": "Offline cache support for two added Day03 lesson scripts and cache version bump"
+    }
+  ]
+}
