@@ -63,3 +63,18 @@ Bieżące statusy zapisuj w [CCNALAB_MODERNIZATION_STATUS.json](CCNALAB_MODERNIZ
 - [Dotychczasowy workflow filmu](CCNA_CONTENT_FROM_VIDEO_WORKFLOW.md)
 - [Dotychczasowy plan merytoryczny](CCNA_CONTENT_PLAN.md)
 - [Baseline i blokady](CCNALAB_BASELINE_20261108.md)
+
+## 7. Aktualny pakiet samodzielny i powrót do Wiedory (2026-11-08)
+
+W trakcie P0 wykonano **izolowaną konfigurację budowania** zamiast kopiowania produkcyjnych zależności Wiedory na ślepo:
+- `standalone/overlay/**` dostarcza 19 ścieżek wymaganych przez obecny wrapper i PWA. 11 plików to sprawdzone oryginały wspólnego UI/trybu nauki, 8 to lokalne adaptery izolujące produkcyjne konto/bazę.
+- `npm run build:standalone` składa to do `dist/`, bez zmiany źródłowych 37 plików CCNA. `npm run preview:standalone` udostępnia obecne trasy.
+- `npm run export:wiedora` przygotowuje **inny** katalog `dist-wiedora/apps/ccna/`, bez plików adapterów, backendu i konfiguracji niezależnego hostingu.
+- Statyczny odczyt Git potwierdził brak zmiany 37 plików `apps/ccna/**` oraz mapę 43/43 ścieżek (24 własne + 19 overlay).
+- Izolowany V8: 28/28 testów kontraktów i workflow (poprzednia partia), 11/11 kontroli składni nowych narzędzi i inline HTML oraz 15/15 składni plików JS overlay.
+
+**To NIE zamyka P0**, ponieważ rzeczywisty `npm ci`, `build:standalone`, testy Node/Chromium, aktualizacja PWA i wydanie nie zostały wykonane na pełnym checkout. Pozostałe P1–P5 nie są zakończone; P3 (modularyzacja `legacy.html`) nie powinna być wykonywana na ślepo bez regresji i punktu odtworzeniowego.
+
+Wersja standalone celowo nie łączy się z produkcyjnym Supabase Wiedory, nie udaje AI i nie zawiera pełnego słownika tłumaczeń hosta. Pozostają to wymagania odbioru modułu po integracji, a nie dowód ich zgodności już teraz.
+
+Więcej: [raport standalone](reports/CCNALAB_STANDALONE_20261108.md), [granice hosta](CCNALAB_HOST_BOUNDARIES.md), [reintegracja](CCNALAB_WIEDORA_REINTEGRATION.md) i [status JSON](CCNALAB_MODERNIZATION_STATUS.json).
