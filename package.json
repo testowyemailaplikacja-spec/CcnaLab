@@ -16,6 +16,7 @@
     "test:packetlab:browser": "node apps/ccna/packet-lab/tests/browser-frame-ready.cjs && node apps/ccna/packet-lab/tests/browser-protocols.cjs && node apps/ccna/packet-lab/tests/browser-topics.cjs && node apps/ccna/packet-lab/tests/browser-ethernet.cjs",
     "test": "npm run test:authoring && npm run test:packetlab:unit",
     "workflow:lesson": "node scripts/ccnalab-lesson-workflow.mjs",
-    "build:lesson-pack": "node scripts/build-ccna-lesson-pack.mjs"
+    "build:lesson-pack": "node scripts/build-ccna-lesson-pack.mjs",
+    "audit:baseline": "node scripts/ccnalab-baseline-check.mjs"
   }
 }
