@@ -42,7 +42,7 @@ function exportData(){
  const storage={};for(const key of keys)storage[key]=localStorage.getItem(key);
  const data={format:'ccnalab-progress-v1',appId:'ccna',exportedAt:new Date().toISOString(),storage};
  const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
- const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='ccna-postep-'+new Date().toISOString().slice(0,10)+'.json';a.click();URL.revokeObjectURL(url);
+ const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='ccna-postep-'+new Date().toISOString().slice(0,10)+'.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),30000);
  el('status').textContent='Zapisano kopię lokalnego postępu.';
 }
 el('export').addEventListener('click',()=>{try{exportData();}catch(e){el('status').textContent='Nie można wyeksportować danych: '+e.message;}});
