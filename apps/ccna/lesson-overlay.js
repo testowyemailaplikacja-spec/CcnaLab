@@ -23,7 +23,15 @@
         status.push({subsectionId:module.subsectionId,result:'MISSING_TARGET'});
         continue;
       }
-      if(subsection.title!==module.data.title || subsection.note!==module.data.note){
+      // Legacy applies the existing terminology adapter to notes before the
+      // iframe finishes loading. Apply the same adapter to an isolated clone
+      // of the external module before checking byte-for-byte parity.
+      const candidate=JSON.parse(JSON.stringify(module.data));
+      if(typeof w.CcnaVocabulary?.course==='function'){
+        const isolated={sections:[{type:'part',sections:[{type:'learning-section',subsections:[candidate]}]}]};
+        w.CcnaVocabulary.course(isolated);
+      }
+      if(subsection.title!==candidate.title || subsection.note!==candidate.note){
         status.push({subsectionId:module.subsectionId,result:'CONFLICT_NO_OVERRIDE'});
         continue;
       }
@@ -34,7 +42,7 @@
         status.push({subsectionId:module.subsectionId,result:'QUESTION_ID_CONFLICT_NO_OVERRIDE'});
         continue;
       }
-      subsection.note=module.data.note; // source is the external module, content is byte-identical
+      subsection.note=candidate.note; // runtime-normalized external module, byte-identical to legacy
       status.push({subsectionId:module.subsectionId,result:'ACTIVE',questionCount:(subsection.questions||[]).length});
     }
     window.dispatchEvent(new CustomEvent('ccnalab-lesson-modules-ready',{detail:current()}));

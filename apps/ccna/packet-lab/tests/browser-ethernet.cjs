@@ -90,8 +90,20 @@ function authScript(signedIn=true){return `if(localStorage.getItem('ccna-browser
     assert.equal(await f.locator('[data-link]').count(),4,'keyboard can remove a cable');
     assert.equal(await f.locator('.pt-canvas').evaluate(el=>el.ownerDocument.activeElement===el),true,'removed SVG action returns focus to topology');
     console.log('PASS keyboard removes a cable and restores focus');
-    await page.evaluate(()=>window.testSetSession(null));await f.locator('.pt-lab').waitFor({state:'detached'});assert.equal(await page.evaluate(()=>localStorage.getItem('ccna-packet-labs-v1')),null);
-    await page.evaluate(()=>window.testSetSession({user:{id:'second-ui-user',email:'other@example.invalid'}}));await page.waitForFunction(()=>JSON.parse(localStorage.getItem('portal-progress-owners-v1')||'{}').ccna==='second-ui-user');await page.evaluate(()=>document.getElementById('appFrame').contentWindow.renderSubsection('przelaczanie-ethernet-czesc-2','laboratorium-analiza-przelaczania-ethernet','packet-lab'));await f.locator('.pt-lab').waitFor();assert.equal(await f.locator('[data-link]').count(),0);console.log('PASS logout closes lab and another account starts separately');
+    await page.evaluate(()=>window.testSetSession(null));await f.locator('.pt-lab').waitFor({state:'detached'});
+    if (process.env.CCNA_LAB_RUNTIME === 'standalone') {
+      // Local-only CCNALab intentionally has NO account switch or cloud sync.
+      // A dummy signed-out event must not silently erase the learner's exportable local data.
+      assert.notEqual(await page.evaluate(()=>localStorage.getItem('ccna-packet-labs-v1')),null);
+      console.log('PASS standalone signout keeps local-only lab progress (no account isolation)');
+    } else {
+      assert.equal(await page.evaluate(()=>localStorage.getItem('ccna-packet-labs-v1')),null);
+      await page.evaluate(()=>window.testSetSession({user:{id:'second-ui-user',email:'other@example.invalid'}}));
+      await page.waitForFunction(()=>JSON.parse(localStorage.getItem('portal-progress-owners-v1')||'{}').ccna==='second-ui-user');
+      await page.evaluate(()=>document.getElementById('appFrame').contentWindow.renderSubsection('przelaczanie-ethernet-czesc-2','laboratorium-analiza-przelaczania-ethernet','packet-lab'));
+      await f.locator('.pt-lab').waitFor();assert.equal(await f.locator('[data-link]').count(),0);
+      console.log('PASS Wiedora logout closes lab and another account starts separately');
+    }
     assert.deepEqual(errors,[]);
     // WIEDORA-CHANGE: WD-20261029-WIE-005-REGRESSION-CODEX4 | TASK: WIE-005 | AUTHOR: Codex / GPT-6
     const guest=await browser.newPage({serviceWorkers:'block'});await guest.route('https://**/*',r=>r.fulfill({body:'',contentType:'text/javascript'}));await guest.route('**/js/supabase-client.js',r=>r.fulfill({body:authScript(false),contentType:'text/javascript'}));await guest.goto(origin+route);await guest.frameLocator('#appFrame').locator('#subsectionModeContent').waitFor();assert.equal(await guest.evaluate(()=>document.documentElement.dataset.portalAuth),'guest');assert.equal(await guest.frameLocator('#appFrame').locator('[data-sub-mode="packet-lab"]').isDisabled(),true);assert.equal(await guest.frameLocator('#appFrame').locator('.pt-lab').count(),0);assert.equal(await guest.evaluate(()=>localStorage.getItem('ccna-packet-labs-v1')),null);console.log('PASS guest sees learning material but locked lab cannot write account progress');

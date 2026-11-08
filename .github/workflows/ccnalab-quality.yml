@@ -48,6 +48,8 @@ jobs:
 
   browser-standalone:
     runs-on: ubuntu-24.04
+    env:
+      CCNA_LAB_RUNTIME: standalone
     timeout-minutes: 50
     steps:
       - uses: actions/checkout@v4

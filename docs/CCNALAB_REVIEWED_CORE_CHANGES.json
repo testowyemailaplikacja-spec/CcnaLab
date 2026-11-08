@@ -15,6 +15,12 @@
       "originalSha": "09c9c8458074a6582f14fdc074f473b0991cd28b",
       "approvedSha": "13de4e1afe8e4ac1a7ab828eab874a2a424fd6cb",
       "reason": "Offline cache support for two added Day03 lesson scripts and cache version bump"
+    },
+    {
+      "path": "apps/ccna/packet-lab/tests/browser-ethernet.cjs",
+      "originalSha": "3f3312c0e315dff18ab16ea7634d8cca31b31c84",
+      "approvedSha": "3825f271d4134bf57b330ceb54a81ae2f35157d9",
+      "reason": "Browser regression distinguishes standalone local progress from Wiedora authenticated account isolation; no production logic change"
     }
   ]
 }
