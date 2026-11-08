@@ -32,3 +32,23 @@ To uruchamia wstępną bramkę strukturalną: notatkę ze źródłem i czasem, m
 `npm run audit:baseline` kontroluje zgodność 37 oryginalnych plików CCNA względem SHA z `docs/CCNALAB_PROTECTED_ORIGINAL_FILES.json`. To mechanizm wykrycia przypadkowej zmiany, **nie** dowód zachowania funkcji. Przy świadomej migracji zmiana manifestu musi być jawna, recenzowana i potwierdzona regresją.
 
 `npm run build:lesson-pack -- path/to/lesson.json path/to/output.json` generuje z jednego banku pytań pochodne fiszki/A-B/ABCD i przenosi dedykowane laboratorium do pakietu treści. Nie wpina go jeszcze do obecnego UI; nie nadpisuje istniejącego pliku wynikowego.
+
+## Samodzielny pakiet rozwojowy
+
+W obecnym kodzie dostępne są także:
+
+```bash
+npm ci
+npm run build:standalone
+npm run audit:assets:strict
+npm run test:standalone
+npm run preview:standalone
+```
+
+Podgląd: `http://127.0.0.1:4173/apps/ccna/`. Serwer służy tylko do developmentu. Produkcyjny serwer można skonfigurować zgodnie z `netlify.toml` (nie opublikowano go automatycznie). Build do `dist/` odtwarza wymagane 19 ścieżek, ale nie kopiuje backendu Wiedory.
+
+`npm run export:wiedora` przygotowuje osobno `dist-wiedora/apps/ccna/` i manifest zmian. **Nie używać** `dist/` jako wejścia do PR Wiedory; modułowy eksport musi przejść testy z `docs/CCNALAB_WIEDORA_REINTEGRATION.md`.
+
+Istniejący `legacy.html` i laboratoria pozostają nietknięte. Samo `npm run test:standalone` i statyczne sprawdzenie ścieżek nie zastępują testów browser, JSDOM ani weryfikacji z działającym Supabase w Wiedorze. `test:packetlab:browser` z oryginalnego źródła nie korzysta automatycznie z `dist/`; przed odbiorem trzeba dostosować harness do pakietu lub uruchomić go w środowisku hosta ze wszystkimi shared assetami.
+
+**W tej sesji:** źródłowe skanowanie Git i izolowany parser JS wykonane; natywny Node `npm run build:standalone`, `npm run test`, przeglądarka i Netlify nadal `NOT_RUN`.
