@@ -36,6 +36,10 @@ jobs:
         run: npm install --no-save --package-lock=false --ignore-scripts jsdom@26.1.0
       - name: Legacy CCNA standalone tests (host-only suites excluded)
         run: npm run test:legacy
+      - name: Verify full course inventory and historical IDs
+        run: npm run test:legacy:inventory
+      - name: Export read-only course inventory
+        run: npm run audit:legacy:inventory > legacy-course-inventory.json
       - name: Save manifest evidence
         if: always()
         uses: actions/upload-artifact@v4
@@ -44,6 +48,7 @@ jobs:
           path: |
             dist/build-manifest.json
             dist-wiedora/INTEGRATION_MANIFEST.json
+            legacy-course-inventory.json
           if-no-files-found: warn
 
   browser-standalone:

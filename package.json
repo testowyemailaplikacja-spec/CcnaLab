@@ -27,6 +27,8 @@
     "test:browser:smoke": "node tests/ccnalab-standalone-browser.cjs",
     "test:browser:packetlab": "node dist/apps/ccna/packet-lab/tests/browser-frame-ready.cjs && node dist/apps/ccna/packet-lab/tests/browser-protocols.cjs && node dist/apps/ccna/packet-lab/tests/browser-topics.cjs && node dist/apps/ccna/packet-lab/tests/browser-ethernet.cjs",
     "validate:pilot": "node scripts/validate-ccna-lesson.mjs content/lessons/jitl-day03-five-layers.json",
-    "test:browser:offline": "node tests/ccnalab-offline-browser.cjs"
+    "test:browser:offline": "node tests/ccnalab-offline-browser.cjs",
+    "audit:legacy:inventory": "node scripts/ccnalab-legacy-inventory.mjs --json",
+    "test:legacy:inventory": "node --test tests/ccnalab-legacy-inventory.test.mjs"
   }
 }
