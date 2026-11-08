@@ -1,0 +1,57 @@
+name: CCNA Lab independent baseline
+on:
+  push:
+    branches:
+      - 'refactor/**'
+      - develop
+  pull_request:
+    branches:
+      - develop
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install locked dependencies
+        run: npm ci
+      - name: Authoring tests and Packet Lab unit tests
+        run: npm test
+      - name: Original CCNA blob SHA baseline
+        run: npm run audit:baseline
+      - name: Build standalone CCNA
+        run: npm run build:standalone
+      - name: Check all referenced static assets
+        run: npm run audit:assets:strict
+      - name: Build clean Wiedora return package
+        run: npm run export:wiedora
+      - name: Check export safety
+        shell: bash
+        run: |
+          test -f dist-wiedora/apps/ccna/legacy.html
+          test ! -e dist-wiedora/apps/shared
+          test ! -e dist-wiedora/js
+          test ! -e dist-wiedora/standalone
+          test -f dist-wiedora/INTEGRATION_MANIFEST.json
+      - name: Add isolated JSDOM runtime for original suite
+        run: npm install --no-save --package-lock=false --ignore-scripts jsdom@26.1.0
+      - name: Original CCNA legacy tests
+        run: npm run test:legacy
+      - name: Save build and reports as job artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ccnalab-builds
+          path: |
+            dist/build-manifest.json
+            dist-wiedora/INTEGRATION_MANIFEST.json
+          if-no-files-found: warn
