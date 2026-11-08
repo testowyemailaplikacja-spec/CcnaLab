@@ -62,6 +62,10 @@
       ['MMF zapewnia wymagany zasięg przy korzystniejszym koszcie optyki w założeniach quizu.',
        'MMF spełnia wymagania łącza i w przyjętym scenariuszu pozwala użyć tańszej optyki.'],
       ['Ponieważ rodzaj światłowodu nie ma znaczenia dla kosztu optyki w quizie.',
+       'Ponieważ koszt optyki nie zależy od rodzaju światłowodu.'],
+      // CcnaVocabulary.course translates selected words before our iframe adapter.
+      // Both forms must be normalized without changing grading IDs or the correct index.
+      ['Ponieważ rodzaj fiber-optic cable nie ma znaczenia dla kosztu optyki w quizie.',
        'Ponieważ koszt optyki nie zależy od rodzaju światłowodu.']
     ],
     'fiber-day02-05': [
