@@ -1,0 +1,18 @@
+{
+  "name": "ccnalab",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Independent development copy of CCNA; legacy runtime and labs preserved",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "audit:assets": "node scripts/ccnalab-asset-audit.mjs",
+    "audit:assets:strict": "node scripts/ccnalab-asset-audit.mjs --strict",
+    "validate:lesson": "node scripts/validate-ccna-lesson.mjs",
+    "test:authoring": "node --test tests/ccnalab-*.test.mjs",
+    "test:packetlab:unit": "node --test apps/ccna/packet-lab/*.test.cjs",
+    "test:legacy": "node --test tests/ccna-*.test.cjs",
+    "test:packetlab:browser": "node apps/ccna/packet-lab/tests/browser-frame-ready.cjs && node apps/ccna/packet-lab/tests/browser-protocols.cjs && node apps/ccna/packet-lab/tests/browser-topics.cjs && node apps/ccna/packet-lab/tests/browser-ethernet.cjs"
+  }
+}
