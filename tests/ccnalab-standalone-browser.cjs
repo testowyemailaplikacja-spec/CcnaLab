@@ -34,7 +34,19 @@ const server=http.createServer((req,res)=>{
     return w?.document?.readyState==='complete'&&typeof w.getLearningSections==='function';
   },{timeout:30000});
   assert.ok(await page.evaluate(()=>document.getElementById('appFrame').contentWindow.getLearningSections().length)>5);
-  await page.waitForFunction(()=>window.CCNALabModuleBridge?.status().some(item=>item.result==='ACTIVE'),{timeout:30000});
+  const debug=await page.evaluate(()=>{
+    const frame=document.getElementById('appFrame'),w=frame?.contentWindow;
+    const module=window.CCNALabLessonModules?.[0];
+    const section=w?.getLearningSections?.()?.find(s=>s.id===module?.sectionId);
+    const sub=section?.subsections?.find(s=>s.id===module?.subsectionId);
+    return {bridge:window.CCNALabModuleBridge?.status(),moduleExists:!!module,
+      sectionId:module?.sectionId,subExists:!!sub,noteEqual:sub?.note===module?.data?.note,
+      noteActual:sub?.note?.slice(0,150),noteSource:module?.data?.note?.slice(0,150),
+      originalIDs:(module?.data?.questions||[]).map(q=>q.id),
+      missingIDs:(module?.data?.questions||[]).map(q=>q.id).filter(id=>!(sub?.questions||[]).some(q=>q.id===id)),
+      pageerrors:errors};});
+  console.log('CCNA module bridge diagnostic:',JSON.stringify(debug));
+  await page.waitForFunction(()=>window.CCNALabModuleBridge?.status().some(item=>item.result==='ACTIVE'),{timeout:10000});
   const moduleStatus=await page.evaluate(()=>window.CCNALabModuleBridge.status());
   assert.ok(moduleStatus.some(item=>item.subsectionId==='piec-warstw-tcp-ip'&&item.result==='ACTIVE'));
   assert.equal(await page.evaluate(()=>window.CCNALabRuntime.mode),'standalone');
