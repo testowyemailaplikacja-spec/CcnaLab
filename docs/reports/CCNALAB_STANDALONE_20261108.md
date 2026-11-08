@@ -31,6 +31,7 @@ Oryginalny `legacy.html` (~2,49 mln znaków) odwołuje się bezpośrednio do tyl
 | Odwołania źródłowe wrapper + SW / dostępność oryginalnych lub overlay | 43/43 PASS (statyczny) | Wszystkie znane ścieżki obecne w drzewie Git |
 | Parser składni JS (10 skryptów) i inline root HTML (1) | 11/11 PASS (isolated V8 parser) | Brak błędu składni w analizowanych plikach |
 | Parser składni 15 plików JS overlay (w tym oryginalne komponenty Wiedory) | 15/15 PASS (isolated V8 parser) | Brak błędu składni w wybranych zasobach standalone |
+| Celowany skan 19 plików overlay na URL produkcyjnego Supabase/publishable/secret/private key | 19/19 bez wykrytych wzorców (statyczny) | To nie jest pełny audyt bezpieczeństwa ani licencji |
 | Dotychczasowy kontrakt danych + workflow | 28/28 PASS (isolated V8, poprzednia partia) | Pytania, A/B, walidatory, statusy |
 | `npm ci` i `npm run build:standalone` na rzeczywistym checkout | NOT_RUN | Brak sieciowego checkout GitHub w środowisku testowym |
 | Natywne `node --test`, JSDOM, Chromium/Playwright | NOT_RUN | Do uruchomienia z pełnym repo i zależnościami |
