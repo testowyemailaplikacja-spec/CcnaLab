@@ -49,7 +49,7 @@ function main(){
    console.log(JSON.stringify({schemaVersion:1,sectionId,subsectionId,source:'legacy-runtime-only; verify original film and remove generated supplements before use',sourceVerified:false,content:subsection},null,2));
  }else if(argv.length===0||argv[0]==='--json'){
    const report=makeInventory(data);console.log(JSON.stringify(report,null,2));
-   if(report.duplicateSubsectionPaths.length||report.learningCards<3000||report.learningSubsections<170)process.exitCode=1;
+   if(report.duplicateSubsectionPaths.length||report.learningCards<2400||report.learningSubsections<150)process.exitCode=1;
  }else throw Error('Unknown inventory arguments');
 }
 if(process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.url)){

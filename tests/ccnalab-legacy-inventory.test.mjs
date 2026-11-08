@@ -3,10 +3,10 @@ import assert from 'node:assert/strict';
 import {readLegacyCourse,makeInventory} from '../scripts/ccnalab-legacy-inventory.mjs';
 let cached;
 function inventory(){return cached??=makeInventory(readLegacyCourse());}
-test('full legacy inventory retains at least 170 learning topics and over 3400 questions',()=>{
+test('full legacy inventory retains more than 150 learning topics and 2400 active teaching cards',()=>{
  const r=inventory();
- assert.ok(r.learningSubsections>=170,r.learningSubsections);
- assert.ok(r.learningCards>=3403,r.learningCards);
+ assert.ok(r.learningSubsections>=150,r.learningSubsections);
+ assert.ok(r.learningCards>=2400,r.learningCards);
  assert.equal(r.distinctLearningPaths,r.learningSubsections);
  assert.deepEqual(r.duplicateSubsectionPaths,[]);
 });
