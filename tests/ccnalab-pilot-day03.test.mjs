@@ -6,7 +6,7 @@ import {validateLesson,deriveAB} from '../scripts/validate-ccna-lesson.mjs';
 const lesson=JSON.parse(fs.readFileSync(new URL('../content/lessons/jitl-day03-five-layers.json',import.meta.url),'utf8'));
 const source=fs.readFileSync(new URL('../apps/ccna/data/modules/day03-tcpip.js',import.meta.url),'utf8');
 const context={window:{}};vm.runInNewContext(source,context);
-const original=context.window.CCNALabLessonModules[0].data.questions;
+const original=JSON.parse(JSON.stringify(context.window.CCNALabLessonModules[0].data.questions));
 test('Day 03 lesson passes source, mapping, card and lab structural gates',()=>{
  assert.deepEqual(validateLesson(lesson),[]);
  assert.equal(lesson.cards.length,original.length);
