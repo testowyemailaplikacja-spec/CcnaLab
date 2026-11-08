@@ -10,7 +10,7 @@
 - `scripts/serve-standalone.mjs`: `npm run preview:standalone` uruchamia statyczny serwer Node bez zależności zewnętrznych, z obsługą bezpośrednich tras CCNA i nagłówkami `nosniff`.
 - `netlify.toml`, `standalone/site/_redirects`, `standalone/site/robots.txt`: hosting statyczny z trasami i `noindex` w środowisku testowym; kod hosta Wiedora bez zmian.
 - `standalone/site/index.html`: oddzielna strona wejściowa, kurs pod `/apps/ccna/`; przyciski eksportu/importu lokalnego postępu (tylko 4 istniejące klucze CCNA).
-- `standalone/overlay/**`: **19 zasobów** potrzebnych przez wrapper i Service Worker. Dziesięć z nich to oryginalne, wybrane pliki współdzielone (study mode, CSS, PWA, i18n, progress storage, guest/content protection), 9 to lokalne adaptery/izolatory platformy. Dodatkowo CSS asystenta AI; liczba 19 obejmuje łączną mapę ścieżek. **Nie przenoszono prawdziwego Supabase URL, klucza publishable/secret ani tożsamości użytkownika**.
+- `standalone/overlay/**`: **19 zasobów** potrzebnych przez wrapper i Service Worker. **11 wybranych oryginalnych plików** współdzielonych (study mode, CSS, PWA, i18n, progress storage, guest/content protection, CSS AI) oraz **8 lokalnych adapterów/izolatorów** platformy. Razem 19 ścieżek; żaden adapter nie udaje produkcyjnego konta. **Nie przenoszono prawdziwego Supabase URL, klucza publishable/secret ani tożsamości użytkownika**.
 - `scripts/ccnalab-asset-audit.mjs`: obsługa parametru `--root dist` do sprawdzania gotowej dystrybucji.
 
 ### Powrót do Wiedory
