@@ -1,0 +1,86 @@
+name: CCNA Lab independent regression
+on:
+  push:
+    branches:
+      - 'refactor/**'
+      - develop
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-regression:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Locked install
+        run: npm ci
+      - name: Lesson contract, study bank, Packet Lab unit
+        run: npm test
+      - name: Original protected CCNA files
+        run: npm run audit:baseline
+      - name: Independent production-style build
+        run: npm run build:standalone
+      - name: Standalone asset paths
+        run: npm run audit:assets:strict
+      - name: Test local mode and package separation
+        run: npm run test:standalone
+      - name: Prepare Wiedora return package
+        run: npm run export:wiedora
+      - name: Install JSDOM for legacy tests
+        run: npm install --no-save --package-lock=false --ignore-scripts jsdom@26.1.0
+      - name: Legacy CCNA standalone tests (host-only suites excluded)
+        run: npm run test:legacy
+      - name: Verify full course inventory and historical IDs
+        run: npm run test:legacy:inventory
+      - name: Export read-only course inventory
+        run: npm run audit:legacy:inventory > legacy-course-inventory.json
+      - name: Save manifest evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ccnalab-build-manifests
+          path: |
+            dist/build-manifest.json
+            dist-wiedora/INTEGRATION_MANIFEST.json
+            legacy-course-inventory.json
+          if-no-files-found: warn
+
+  browser-standalone:
+    runs-on: ubuntu-24.04
+    env:
+      CCNA_LAB_RUNTIME: standalone
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Locked install and browser runner
+        run: |
+          npm ci
+          npm install --no-save --package-lock=false playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Build independent CCNA
+        run: npm run build:standalone
+      - name: Chromium smoke - independent app and local progress
+        run: npm run test:browser:smoke
+      - name: Chromium Packet Lab regression - run even if smoke finds a problem
+        if: ${{ !cancelled() }}
+        run: npm run test:browser:packetlab
+      - name: Chromium CCNA PWA online/offline/online
+        if: ${{ !cancelled() }}
+        run: npm run test:browser:offline
+      - name: Save browser reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ccnalab-browser-reports
+          path: |
+            /tmp/ccna-lab-browser-results/
+          if-no-files-found: warn

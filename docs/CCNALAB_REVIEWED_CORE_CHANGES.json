@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "originalBaseline": "docs/CCNALAB_PROTECTED_ORIGINAL_FILES.json",
+  "reviewedOn": "2026-11-08",
+  "risk": "Module pilot; do not approve future changes without tests",
+  "changes": [
+    {
+      "path": "apps/ccna/index.html",
+      "originalSha": "24aaf5e8c9965d99661186473c0e47cdab4cdc97",
+      "approvedSha": "5efca1787da6d42d86a89d5cf5a54fe22eee3a73",
+      "reason": "Preload exact Day03 external data and iframe bridge with legacy fallback; Enable same-card Day02 A/B quality adapter after question-pool restoration; preserve module bridge"
+    },
+    {
+      "path": "apps/ccna/sw.js",
+      "originalSha": "09c9c8458074a6582f14fdc074f473b0991cd28b",
+      "approvedSha": "a4087e09349139604657be528c7952221841e4b7",
+      "reason": "Offline cache support for two added Day03 lesson scripts and cache version bump; Cache same-card A/B adapter for offline and bump CCNA cache version"
+    },
+    {
+      "path": "apps/ccna/packet-lab/tests/browser-ethernet.cjs",
+      "originalSha": "3f3312c0e315dff18ab16ea7634d8cca31b31c84",
+      "approvedSha": "3825f271d4134bf57b330ceb54a81ae2f35157d9",
+      "reason": "Browser regression distinguishes standalone local progress from Wiedora authenticated account isolation; no production logic change"
+    }
+  ]
+}

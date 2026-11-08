@@ -1,0 +1,294 @@
+{
+  "schemaVersion": 1,
+  "id": "jitl-day03-five-layers",
+  "sectionId": "model-tcp-ip/piec-warstw-tcp-ip",
+  "titleEn": "The TCP/IP Model — Five Layers",
+  "source": {
+    "url": "https://www.youtube.com/watch?v=yM-XNq9ADlI",
+    "title": "How the TCP/IP Model Actually Works | CCNA Day 3 — Jeremy's IT Lab",
+    "verified": true,
+    "rightsReviewed": true,
+    "reference": "Chapter guide and indexed cues checked; original paraphrase only, full manual watch NOT_RUN. Technical cross-check: https://www.rfc-editor.org/rfc/rfc1122.html and https://www.cisco.com/site/us/en/learn/training-certifications/training/courses/ccna.html"
+  },
+  "sourceNote": {
+    "blocks": [
+      {
+        "id": "s01",
+        "start": "00:00",
+        "end": "05:02",
+        "text": "Otwarte standardy i protokoły określają zasady wymiany danych między urządzeniami różnych producentów; wprowadzenie do historycznego rozwoju TCP/IP."
+      },
+      {
+        "id": "s02",
+        "start": "05:02",
+        "end": "07:02",
+        "text": "Rola niezależnych organizacji w standaryzacji sieci, w tym IEEE i IETF. Standard to specyfikacja, a protokół to reguły komunikacji."
+      },
+      {
+        "id": "s03",
+        "start": "07:02",
+        "end": "15:36",
+        "text": "Warstwowość pozwala rozdzielić zadania systemu; analogia przesyłania wiadomości pokazuje, że każda warstwa korzysta z usług niższej."
+      },
+      {
+        "id": "s04",
+        "start": "15:36",
+        "end": "19:57",
+        "text": "Przykład przepływu od klienta do serwera: zastosowanie pięciowarstwowego modelu komunikacji."
+      },
+      {
+        "id": "s05",
+        "start": "19:57",
+        "end": "27:34",
+        "text": "Pięć warstw: Physical, Local Network/Data Link, Internet, Transport i Application. Ich zakres obejmuje medium, adres MAC, adres IP, porty oraz usługi aplikacji."
+      },
+      {
+        "id": "s06",
+        "start": "27:34",
+        "end": "33:13",
+        "text": "Encapsulation dodaje nagłówki odpowiednich protokołów i ewentualną stopkę; receiver przeprowadza decapsulation. PDU ma inną nazwę zależnie od warstwy."
+      },
+      {
+        "id": "s07",
+        "start": "33:13",
+        "end": "36:00",
+        "text": "Różnica między komunikacją sąsiednich warstw jednego urządzenia a logicznym współdziałaniem odpowiadających sobie warstw w dwóch hostach."
+      },
+      {
+        "id": "s08",
+        "start": "36:00",
+        "end": "42:42",
+        "text": "Zestawienie modelu TCP/IP i siedmiowarstwowego OSI; liczba warstw zależy od przyjętej konwencji, a model jest narzędziem objaśniającym."
+      }
+    ]
+  },
+  "expandedNote": {
+    "blocks": [
+      {
+        "id": "n-app",
+        "headingEn": "Application layer",
+        "markdown": "Warstwa aplikacji (Application layer) zapewnia protokoły komunikacji wykorzystywane przez aplikacje, np. HTTP/HTTPS, DNS lub SMTP. W pięciowarstwowym modelu obejmuje również funkcje, które OSI rozdziela między warstwy 5–7. Dane aplikacji nie identyfikują jeszcze fizycznej drogi przez sieć."
+      },
+      {
+        "id": "n-transport",
+        "headingEn": "Transport layer",
+        "markdown": "Warstwa transportowa (Transport layer) odpowiada za komunikację proces–proces i wykorzystuje numery portów. TCP oferuje m.in. kontrolę niezawodności i kolejności, a UDP zapewnia prostszy datagramowy sposób transmisji. Routery nie przełączają pakietów przede wszystkim na podstawie portów."
+      },
+      {
+        "id": "n-internet",
+        "headingEn": "Internet layer",
+        "markdown": "Warstwa internetowa (Internet layer, warstwa 3 w modelu pięciowarstwowym) zapewnia adresowanie IP i kierowanie pakietów między sieciami. Router podejmuje decyzję o następnym przeskoku, wykorzystując trasę do docelowej sieci IPv4/IPv6. Adres IP służy do określenia celu na poziomie sieci, nie portu przełącznika."
+      },
+      {
+        "id": "n-link",
+        "headingEn": "Local Network / Data Link layer",
+        "markdown": "Warstwa sieci lokalnej (Local Network lub Data Link, warstwa 2) przenosi ramki w obrębie pojedynczego łącza i korzysta z adresów MAC. Ethernet i Wi‑Fi realizują lokalną transmisję; przełącznik zwykle podejmuje decyzje na podstawie tablicy MAC i VLAN. Adres MAC używany na danym łączu może zmieniać się w kolejnych przeskokach, podczas gdy docelowy adres IP pozostaje adresem hosta docelowego."
+      },
+      {
+        "id": "n-physical",
+        "headingEn": "Physical layer",
+        "markdown": "Warstwa fizyczna (Physical layer) przenosi bity jako sygnały elektryczne, optyczne lub radiowe. Obejmuje złącza, kable miedziane, światłowód, fale radiowe i parametry transmisji. Sam sygnał nie rozstrzyga, który proces aplikacyjny odebrał dane; potrzebne są kolejne warstwy."
+      }
+    ]
+  },
+  "objectives": [
+    {
+      "id": "o-app",
+      "statement": "Wskazać funkcję Application layer i podstawowe protokoły aplikacyjne",
+      "sourceBlockIds": [
+        "s04",
+        "s05"
+      ],
+      "noteBlockIds": [
+        "n-app"
+      ]
+    },
+    {
+      "id": "o-transport",
+      "statement": "Wyjaśnić rolę TCP, UDP i numerów portów w Transport layer",
+      "sourceBlockIds": [
+        "s05"
+      ],
+      "noteBlockIds": [
+        "n-transport"
+      ]
+    },
+    {
+      "id": "o-internet",
+      "statement": "Wyjaśnić IP, routing i rolę routera w Internet layer",
+      "sourceBlockIds": [
+        "s05"
+      ],
+      "noteBlockIds": [
+        "n-internet"
+      ]
+    },
+    {
+      "id": "o-link",
+      "statement": "Wskazać funkcję ramek, MAC i technologii Ethernet oraz Wi-Fi",
+      "sourceBlockIds": [
+        "s05"
+      ],
+      "noteBlockIds": [
+        "n-link"
+      ]
+    },
+    {
+      "id": "o-physical",
+      "statement": "Wyjaśnić przesył bitów i rodzaje medium fizycznego",
+      "sourceBlockIds": [
+        "s05"
+      ],
+      "noteBlockIds": [
+        "n-physical"
+      ]
+    }
+  ],
+  "cards": [
+    {
+      "id": "tcp-07",
+      "objectiveId": "o-app",
+      "noteBlockId": "n-app",
+      "question": "Która warstwa odpowiada za formatowanie i interpretowanie danych aplikacji?",
+      "options": [
+        "Warstwa aplikacji.",
+        "Warstwa fizyczna.",
+        "Warstwa internetowa.",
+        "Warstwa łącza danych."
+      ],
+      "correctIndex": 0,
+      "explanation": "Application layer przetwarza informacje używane przez aplikację oraz obsługuje protokoły takie jak HTTP i DNS.",
+      "status": "active"
+    },
+    {
+      "id": "tcp-08",
+      "objectiveId": "o-transport",
+      "noteBlockId": "n-transport",
+      "question": "Która warstwa używa numerów portów do identyfikowania procesów?",
+      "options": [
+        "Warstwa transportowa.",
+        "Warstwa fizyczna.",
+        "Warstwa internetowa.",
+        "Warstwa sieci lokalnej."
+      ],
+      "correctIndex": 0,
+      "explanation": "TCP i UDP używają portów źródłowych i docelowych do wskazania procesów uczestniczących w komunikacji.",
+      "status": "active"
+    },
+    {
+      "id": "tcp-09",
+      "objectiveId": "o-internet",
+      "noteBlockId": "n-internet",
+      "question": "Która warstwa zapewnia komunikację host–host przy użyciu adresów IP?",
+      "options": [
+        "Warstwa internetowa, czyli warstwa 3.",
+        "Warstwa aplikacji.",
+        "Warstwa transportowa.",
+        "Warstwa fizyczna."
+      ],
+      "correctIndex": 0,
+      "explanation": "Internet layer korzysta z adresów IP, aby umożliwiać komunikację hostów pomiędzy różnymi sieciami.",
+      "status": "active"
+    },
+    {
+      "id": "tcp-10",
+      "objectiveId": "o-link",
+      "noteBlockId": "n-link",
+      "question": "Która warstwa zapewnia dostarczenie skok–skok (hop-to-hop) przy użyciu adresów MAC?",
+      "options": [
+        "Warstwa sieci lokalnej lub łącza danych, czyli warstwa 2.",
+        "Warstwa 5.",
+        "Warstwa 4.",
+        "Warstwa 1."
+      ],
+      "correctIndex": 0,
+      "explanation": "Warstwa 2 przenosi lokalne ramki z adresami MAC, między sąsiadującymi urządzeniami i przeskokami.",
+      "status": "active"
+    },
+    {
+      "id": "tcp-11",
+      "objectiveId": "o-physical",
+      "noteBlockId": "n-physical",
+      "question": "Która warstwa przesyła bity (bits) jako sygnały elektryczne, optyczne lub radiowe?",
+      "options": [
+        "Warstwa fizyczna.",
+        "Warstwa aplikacji.",
+        "Warstwa transportowa.",
+        "Warstwa internetowa."
+      ],
+      "correctIndex": 0,
+      "explanation": "Physical layer zamienia przesyłane bity na sygnały radiowe, świetlne lub elektryczne.",
+      "status": "active"
+    },
+    {
+      "id": "tcp-12",
+      "objectiveId": "o-internet",
+      "noteBlockId": "n-internet",
+      "question": "Na której warstwie działają głównie routery podczas przekazywania pakietów?",
+      "options": [
+        "Na warstwie 3.",
+        "Na warstwie 5.",
+        "Na warstwie 4.",
+        "Wyłącznie na warstwie 1."
+      ],
+      "correctIndex": 0,
+      "explanation": "Routery przekazują pakiety według informacji IP i tablicy routingu, czyli zasadniczo pracują na warstwie 3.",
+      "status": "active"
+    },
+    {
+      "id": "tcp-13",
+      "objectiveId": "o-transport",
+      "noteBlockId": "n-transport",
+      "question": "Które protokoły są najważniejszymi przykładami warstwy transportowej?",
+      "options": [
+        "TCP i UDP.",
+        "IP i ICMP.",
+        "Ethernet i Wi-Fi.",
+        "HTTP i DNS wyłącznie."
+      ],
+      "correctIndex": 0,
+      "explanation": "TCP i UDP są podstawowymi protokołami Transport layer, a IP należy do Internet layer.",
+      "status": "active"
+    },
+    {
+      "id": "tcp-14",
+      "objectiveId": "o-link",
+      "noteBlockId": "n-link",
+      "question": "Które technologie są przykładami warstwy 2?",
+      "options": [
+        "Ethernet i Wi-Fi.",
+        "TCP i UDP.",
+        "IPv4 i IPv6.",
+        "HTTP i FTP."
+      ],
+      "correctIndex": 0,
+      "explanation": "Ethernet i Wi-Fi zapewniają transmisję lokalną na warstwie 2; TCP i UDP to protokoły warstwy 4.",
+      "status": "active"
+    }
+  ],
+  "laboratory": {
+    "id": "jitl-day03-osi-packet-tracer",
+    "titleEn": "Inspect OSI/TCP-IP packet flow in Packet Tracer Simulation Mode",
+    "sourceUrl": "https://www.youtube.com/watch?v=7nmYoL0t2tU",
+    "noCli": true,
+    "commands": [],
+    "topology": "One PC, one server, two switches and two routers connected in a path. Configure IP addressing using Packet Tracer GUI or start from an independently verified exercise file.",
+    "steps": [
+      "Uruchom Packet Tracer i otwórz ćwiczenie OSI Model albo zbuduj topologię PC–SW1–R1–R2–SW2–Server.",
+      "Przygotuj spójne adresowanie IPv4 oraz bramy domyślne; sprawdź przejście ping pomiędzy PC i serwerem.",
+      "Przełącz z Realtime na Simulation i ustaw filtr zdarzeń ARP, ICMP, DHCP oraz HTTP, jeżeli są dostępne.",
+      "Wywołaj ruch testowy i użyj Capture/Forward. Rozpoznaj ramkę, pakiet i dane aplikacji w PDU Details.",
+      "Porównaj adresy MAC między kolejnymi łączami z adresami IP źródła i celu; opisz, które pola ulegają zmianie.",
+      "Wprowadź kontrolowaną usterkę bramy lub łącza, potwierdź przerwanie komunikacji i przywróć poprawną konfigurację."
+    ],
+    "positiveChecks": [
+      "PC komunikuje się z serwerem po przywróceniu prawidłowej adresacji i połączeń.",
+      "W szczegółach symulacji widać zmianę adresów MAC i zachowanie logicznych adresów IP podczas routingu."
+    ],
+    "negativeChecks": [
+      "Po odłączeniu łącza lub usunięciu bramy połączenie do odległej sieci nie zostaje zrealizowane.",
+      "Po przywróceniu poprawnej trasy/łącza test łączności znowu się udaje."
+    ],
+    "packetTracerLink": null
+  }
+}

@@ -1,0 +1,194 @@
+{
+  "schemaVersion": 1,
+  "sourceRepo": "testowyemailaplikacja-spec/CcnaLab",
+  "sourceBranch": "develop",
+  "recordedOn": "2026-11-08",
+  "protectionPolicy": "Original UI, learner progress and Packet Lab must not change without explicit review and regression",
+  "files": [
+    {
+      "path": "apps/ccna/bug-fixes.js",
+      "sha": "6e860f32702787ac39093e853207ae39ddb1d2e4",
+      "size": 14206
+    },
+    {
+      "path": "apps/ccna/data/archived/day02-topology-and-out-of-scope-questions.json",
+      "sha": "a9af373d97ca76ffe248ef7e58715da6c8e6bc7c",
+      "size": 11488
+    },
+    {
+      "path": "apps/ccna/data/jitl-labs.js",
+      "sha": "df9582d2abccabe7c9398a407ca1f2219f4b70b7",
+      "size": 24907
+    },
+    {
+      "path": "apps/ccna/data/terminology.js",
+      "sha": "c2ebab2c5d074be27a2d1fd49d52eb4c0b0bacff",
+      "size": 35848
+    },
+    {
+      "path": "apps/ccna/icon.svg",
+      "sha": "6e5f562c5f9493a6e97a47ce7b614650f0093e21",
+      "size": 334
+    },
+    {
+      "path": "apps/ccna/index.html",
+      "sha": "24aaf5e8c9965d99661186473c0e47cdab4cdc97",
+      "size": 4342
+    },
+    {
+      "path": "apps/ccna/legacy.html",
+      "sha": "c77360feff75ffec9cd532acd11fe70e56640fc8",
+      "size": 2521103
+    },
+    {
+      "path": "apps/ccna/manifest.webmanifest",
+      "sha": "dc409370a15db876ca55d3bf63d2462d6652712a",
+      "size": 473
+    },
+    {
+      "path": "apps/ccna/packet-lab/cli.js",
+      "sha": "e7042444122c5fc91f4a42f76d63b726957b9a58",
+      "size": 59136
+    },
+    {
+      "path": "apps/ccna/packet-lab/curriculum.js",
+      "sha": "c8d4d125c054b959a71e40bf78accae63c832ce0",
+      "size": 15282
+    },
+    {
+      "path": "apps/ccna/packet-lab/devices.js",
+      "sha": "44c24e6e4f303c945c95aade0e0836828eb461aa",
+      "size": 5403
+    },
+    {
+      "path": "apps/ccna/packet-lab/engine.js",
+      "sha": "0a8b00b5ac02895919b7c6412c2b2b72f09be4be",
+      "size": 42250
+    },
+    {
+      "path": "apps/ccna/packet-lab/engine.test.cjs",
+      "sha": "b72deace87e4abc689a66e09fc60cb4e430fecc3",
+      "size": 7264
+    },
+    {
+      "path": "apps/ccna/packet-lab/ethernet.js",
+      "sha": "0c327e5e82a3f75701b6930d8ec870bbba6e59de",
+      "size": 18725
+    },
+    {
+      "path": "apps/ccna/packet-lab/extended.test.cjs",
+      "sha": "88bc3e66ee64677e8f0d4ea8701cdaed161e2535",
+      "size": 19535
+    },
+    {
+      "path": "apps/ccna/packet-lab/integration.js",
+      "sha": "ec2627e5ffcbe18d7d3f19502497b5a2b97864e9",
+      "size": 9930
+    },
+    {
+      "path": "apps/ccna/packet-lab/lab.css",
+      "sha": "b33d8818fb17d902f99c31c099df1010e79b6c20",
+      "size": 20270
+    },
+    {
+      "path": "apps/ccna/packet-lab/lab.js",
+      "sha": "e2837854bbda512ed03d641413421bc448516832",
+      "size": 73415
+    },
+    {
+      "path": "apps/ccna/packet-lab/protocol-cli.js",
+      "sha": "7dc60f6d6e5ed7f132738b401a38167f75e2ec09",
+      "size": 18270
+    },
+    {
+      "path": "apps/ccna/packet-lab/protocols.js",
+      "sha": "86ea90ae28cdb520163baa434ebe663ba51457ce",
+      "size": 28061
+    },
+    {
+      "path": "apps/ccna/packet-lab/protocols.test.cjs",
+      "sha": "a0b2dbbc6f0eabe0a45f35b4e5f38b290a7a1f40",
+      "size": 21033
+    },
+    {
+      "path": "apps/ccna/packet-lab/README.md",
+      "sha": "6a1c059c9ecfc6239c2e5ce7542b71850ed01045",
+      "size": 17642
+    },
+    {
+      "path": "apps/ccna/packet-lab/scenario-extensions.js",
+      "sha": "0bcb9a4a9a8857752fa4e48b66299f7a2029fc5f",
+      "size": 13544
+    },
+    {
+      "path": "apps/ccna/packet-lab/scenarios.js",
+      "sha": "ec60e949feab30fb6f8a337f41953b49e6bd9b52",
+      "size": 38021
+    },
+    {
+      "path": "apps/ccna/packet-lab/tests/browser-ethernet.cjs",
+      "sha": "3f3312c0e315dff18ab16ea7634d8cca31b31c84",
+      "size": 15882
+    },
+    {
+      "path": "apps/ccna/packet-lab/tests/browser-frame-ready.cjs",
+      "sha": "fe35d56203d8ef4b54a19ff4e92163a6f3b49f0b",
+      "size": 5161
+    },
+    {
+      "path": "apps/ccna/packet-lab/tests/browser-learner-fixture.cjs",
+      "sha": "639b3b779050919bebbcdfb65bbff146d9f573a2",
+      "size": 959
+    },
+    {
+      "path": "apps/ccna/packet-lab/tests/browser-protocols.cjs",
+      "sha": "0c61398df124f95c09a5c574d3a646cdaac7a013",
+      "size": 13335
+    },
+    {
+      "path": "apps/ccna/packet-lab/tests/browser-topics.cjs",
+      "sha": "53c68e7737263d024f35196911c7cf371e23f0cc",
+      "size": 12397
+    },
+    {
+      "path": "apps/ccna/packet-lab/wireless.js",
+      "sha": "6784f9ba6fc37c8241dbdacc3694d1ecc8082683",
+      "size": 13559
+    },
+    {
+      "path": "apps/ccna/packet-lab/wlc-ui.js",
+      "sha": "155a5eff569c331cab23b47a6ba6580fec9925f2",
+      "size": 10456
+    },
+    {
+      "path": "apps/ccna/question-pool-visibility.js",
+      "sha": "505ea87ed775f48c494e338033ec12d6bf8f2e80",
+      "size": 3345
+    },
+    {
+      "path": "apps/ccna/README.md",
+      "sha": "65cdaff8ebb7caceeed87aefeaf30d796f845112",
+      "size": 436
+    },
+    {
+      "path": "apps/ccna/router.js",
+      "sha": "288b96ee3dd0f51a7eff1e6d6fc1c43696c3ba76",
+      "size": 7564
+    },
+    {
+      "path": "apps/ccna/study-adapter.js",
+      "sha": "72c51ff8043ab9aea523d62280ae95a48e72ed51",
+      "size": 5720
+    },
+    {
+      "path": "apps/ccna/sw.js",
+      "sha": "09c9c8458074a6582f14fdc074f473b0991cd28b",
+      "size": 7453
+    },
+    {
+      "path": "apps/ccna/TERMINOLOGY.md",
+      "sha": "15accbb8e145731c309933db2b528af09b0ff06c",
+      "size": 4136
+    }
+  ]
+}

@@ -1,0 +1,156 @@
+{
+  "schema": 1,
+  "project": "CCNALAB-MOD",
+  "date": "2026-11-08",
+  "repository": "testowyemailaplikacja-spec/CcnaLab",
+  "targetBranch": "develop",
+  "issue": "https://github.com/testowyemailaplikacja-spec/CcnaLab/issues/1",
+  "overall": "IN_PROGRESS",
+  "completionRule": "Only mark COMPLETED when P0-P5 are PASS with verified runnable evidence",
+  "protect": [
+    "existing UI",
+    "course/navigation",
+    "flashcards",
+    "AB/ABCD/exams",
+    "learner progress and IDs",
+    "PWA/offline",
+    "Packet Lab, CLI and all labs"
+  ],
+  "phases": [
+    {
+      "id": "P0",
+      "title": "Baseline, dependency independence, runtime",
+      "status": "IN_PROGRESS",
+      "evidence": [
+        "37/37 copied CCNA files identical to source develop (baseline 2026-11-08)",
+        "19 missing host asset references verified by static asset audit in isolated V8",
+        "Asset-audit test scenarios 4/4 PASS isolated V8; native Node NOT_RUN",
+        "No existing apps/ccna files changed versus develop",
+        "37 original apps/ccna files preserved as SHA baseline; guard added, native execution NOT_RUN",
+        "Standalone overlay provides all 19 direct host references with exact paths; GitHub static scan 43/43 assets present",
+        "Built-site scripts, local-only progress transfer and clean reintegration export added; 11/11 syntax checks passed in isolated V8"
+      ],
+      "blockers": [
+        "Actual npm ci/build:standalone/native Node and Chromium E2E NOT_RUN",
+        "Full PL/EN translation and authenticated cloud/AI services need Wiedora host integration",
+        "Public-repo material/licensing review not formally signed off",
+        "Netlify deploy SHA NOT_RUN"
+      ]
+    },
+    {
+      "id": "P1",
+      "title": "Structured content model and validation",
+      "status": "IN_PROGRESS",
+      "evidence": [
+        "schemas/ccna-lesson.schema.json added",
+        "scripts/validate-ccna-lesson.mjs: authoring contract and deriveAB",
+        "13/13 authoring tests PASS isolated V8; numeric-normalization defect detected and fixed",
+        "scripts/build-ccna-lesson-pack.mjs derives flashcard, AB and ABCD from one source card; 4/4 isolated V8 PASS"
+      ],
+      "blockers": [
+        "Schema not yet connected to existing UI/runtime",
+        "Native Node and semantic content review NOT_RUN"
+      ]
+    },
+    {
+      "id": "P2",
+      "title": "Enforced lesson workflow",
+      "status": "IN_PROGRESS",
+      "evidence": [
+        "scripts/ccnalab-lesson-workflow.mjs added with ordered ten-step gates",
+        "7/7 workflow tests PASS isolated V8"
+      ],
+      "blockers": [
+        "Real lesson execution and source-backed quality acceptance NOT_RUN",
+        "Actual reviewer/runtime evidence pending"
+      ]
+    },
+    {
+      "id": "P3",
+      "title": "Incremental extraction from legacy.html",
+      "status": "NOT_STARTED",
+      "evidence": [],
+      "blockers": []
+    },
+    {
+      "id": "P4",
+      "title": "Automated CI and acceptance",
+      "status": "IN_PROGRESS",
+      "evidence": [
+        "tests/ccnalab-standalone.test.mjs added for overlay coverage, clean export and source preservation",
+        "npm scripts for standalone build, strict asset audit, preview and Wiedora export added"
+      ],
+      "blockers": [
+        "Native Node + JSDOM and browser test runs NOT_RUN",
+        "No CI release gating or environment-ready deployment evidence"
+      ]
+    },
+    {
+      "id": "P5",
+      "title": "Day 03 pilot and full regression",
+      "status": "NOT_STARTED",
+      "evidence": [],
+      "blockers": [
+        "Verified source material and end-to-end tests required"
+      ]
+    }
+  ],
+  "tests": {
+    "isolatedV8": {
+      "status": "PASS",
+      "cases": 28,
+      "failures": 0,
+      "scope": "contract 13, asset checks 4, workflow 7, lesson pack 4; isolated JS, NOT native Node"
+    },
+    "node": "NOT_RUN",
+    "jsdom": "NOT_RUN",
+    "playwright": "NOT_RUN",
+    "realDeployment": "NOT_RUN",
+    "assetAudit": {
+      "status": "BLOCKED_DEPENDENCIES",
+      "missing": 19,
+      "existing": 24,
+      "references": 43
+    },
+    "originalFileShaGuard": "NOT_RUN (GitHub compare confirms 0 changes to apps/ccna on feature branch)",
+    "standaloneStatic": {
+      "status": "PASS_STATIC",
+      "sourceUnchangedFiles": 37,
+      "knownLocalAssets": 43,
+      "assetPathsResolved": 43,
+      "overlayFiles": 19,
+      "jsSyntaxChecks": {
+        "status": "PASS_ISOLATED_V8",
+        "total": 11,
+        "failed": 0
+      },
+      "runtime": "NOT_RUN"
+    },
+    "wiedoraReintegration": {
+      "status": "NOT_RUN",
+      "exportScript": "scripts/prepare-wiedora-export.mjs",
+      "actualHostMerge": "NOT_RUN"
+    }
+  },
+  "completedAt": null,
+  "finalReport": null,
+  "pullRequest": "https://github.com/testowyemailaplikacja-spec/CcnaLab/pull/2",
+  "lastProgressReport": "docs/reports/CCNALAB_STANDALONE_20261108.md",
+  "standalone": {
+    "buildScript": "scripts/build-standalone.mjs",
+    "previewScript": "scripts/serve-standalone.mjs",
+    "publishingConfig": "netlify.toml",
+    "expectedAppRoute": "/apps/ccna/",
+    "sourcesUnchanged": 37,
+    "knownStaticReferences": 43,
+    "staticPathsResolvedWithOverlay": 43,
+    "overlaidHostFiles": 19,
+    "accountMode": "local-only",
+    "backendServices": "NOT_AVAILABLE_UNTIL_WIEDORA_REINTEGRATION",
+    "actualNodeBuild": "NOT_RUN",
+    "browserAcceptance": "NOT_RUN",
+    "netlifyDeployment": "NOT_RUN",
+    "returnPackage": "scripts/prepare-wiedora-export.mjs"
+  },
+  "lastUpdated": "2026-11-08"
+}
