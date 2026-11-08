@@ -26,13 +26,15 @@
         "19 missing host asset references verified by static asset audit in isolated V8",
         "Asset-audit test scenarios 4/4 PASS isolated V8; native Node NOT_RUN",
         "No existing apps/ccna files changed versus develop",
-        "37 original apps/ccna files preserved as SHA baseline; guard added, native execution NOT_RUN"
+        "37 original apps/ccna files preserved as SHA baseline; guard added, native execution NOT_RUN",
+        "Standalone overlay provides all 19 direct host references with exact paths; GitHub static scan 43/43 assets present",
+        "Built-site scripts, local-only progress transfer and clean reintegration export added; 11/11 syntax checks passed in isolated V8"
       ],
       "blockers": [
-        "19 required host paths unresolved",
-        "Standalone start and browser E2E NOT_RUN",
-        "Third-party licenses/secrets review pending",
-        "Legacy jsdom/Playwright setup pending"
+        "Actual npm ci/build:standalone/native Node and Chromium E2E NOT_RUN",
+        "Full PL/EN translation and authenticated cloud/AI services need Wiedora host integration",
+        "Public-repo material/licensing review not formally signed off",
+        "Netlify deploy SHA NOT_RUN"
       ]
     },
     {
@@ -73,9 +75,15 @@
     {
       "id": "P4",
       "title": "Automated CI and acceptance",
-      "status": "NOT_STARTED",
-      "evidence": [],
-      "blockers": []
+      "status": "IN_PROGRESS",
+      "evidence": [
+        "tests/ccnalab-standalone.test.mjs added for overlay coverage, clean export and source preservation",
+        "npm scripts for standalone build, strict asset audit, preview and Wiedora export added"
+      ],
+      "blockers": [
+        "Native Node + JSDOM and browser test runs NOT_RUN",
+        "No CI release gating or environment-ready deployment evidence"
+      ]
     },
     {
       "id": "P5",
@@ -104,10 +112,45 @@
       "existing": 24,
       "references": 43
     },
-    "originalFileShaGuard": "NOT_RUN (GitHub compare confirms 0 changes to apps/ccna on feature branch)"
+    "originalFileShaGuard": "NOT_RUN (GitHub compare confirms 0 changes to apps/ccna on feature branch)",
+    "standaloneStatic": {
+      "status": "PASS_STATIC",
+      "sourceUnchangedFiles": 37,
+      "knownLocalAssets": 43,
+      "assetPathsResolved": 43,
+      "overlayFiles": 19,
+      "jsSyntaxChecks": {
+        "status": "PASS_ISOLATED_V8",
+        "total": 11,
+        "failed": 0
+      },
+      "runtime": "NOT_RUN"
+    },
+    "wiedoraReintegration": {
+      "status": "NOT_RUN",
+      "exportScript": "scripts/prepare-wiedora-export.mjs",
+      "actualHostMerge": "NOT_RUN"
+    }
   },
   "completedAt": null,
   "finalReport": null,
   "pullRequest": "https://github.com/testowyemailaplikacja-spec/CcnaLab/pull/2",
-  "lastProgressReport": "docs/reports/CCNALAB_MOD_20261108_START.md"
+  "lastProgressReport": "docs/reports/CCNALAB_STANDALONE_20261108.md",
+  "standalone": {
+    "buildScript": "scripts/build-standalone.mjs",
+    "previewScript": "scripts/serve-standalone.mjs",
+    "publishingConfig": "netlify.toml",
+    "expectedAppRoute": "/apps/ccna/",
+    "sourcesUnchanged": 37,
+    "knownStaticReferences": 43,
+    "staticPathsResolvedWithOverlay": 43,
+    "overlaidHostFiles": 19,
+    "accountMode": "local-only",
+    "backendServices": "NOT_AVAILABLE_UNTIL_WIEDORA_REINTEGRATION",
+    "actualNodeBuild": "NOT_RUN",
+    "browserAcceptance": "NOT_RUN",
+    "netlifyDeployment": "NOT_RUN",
+    "returnPackage": "scripts/prepare-wiedora-export.mjs"
+  },
+  "lastUpdated": "2026-11-08"
 }
