@@ -95,6 +95,7 @@ function validatePack(p) {
   }
   if(kind==='lab') {
     add(cards.length===0,'lab cannot have flashcards');
+    add(qs.some(q=>q.mode==='ab')&&qs.some(q=>q.mode==='abcd'),'lab must have A/B and A/B/C/D questions');
     checkAgg('flashcardIds',[]);
     const lab=p.lab||{};
     add(isText(lab.subsectionId)&&subIds.has(lab.subsectionId)&&lab.isLast===true&&sub.at(-1)?.id===lab.subsectionId,'lab must be the final dedicated subsection');
@@ -104,7 +105,10 @@ function validatePack(p) {
     add(Array.isArray(lab.noteParts)&&lab.noteParts.at(-1)==='commands','lab visible note must end in command list');
     add(Array.isArray(lab.diagram)&&lab.diagram.length>0,'lab diagram required');
     const commands=arr(lab.commands,'lab.commands');
-    if(commands.length===0)add(lab.explicitNoCli===true,'missing explicit no-CLI confirmation');
+    if(commands.length===0){
+      add(lab.explicitNoCli===true,'missing explicit no-CLI confirmation');
+      add(sub.at(-1)?.noteVisible?.includes('Komendy Cisco IOS CLI: brak'),'lab note must explicitly say no CLI commands');
+    }
     commands.forEach(c=>{
       add(isText(c.id)&&isText(c.syntax)&&isText(c.device)&&isText(c.mode)&&isText(c.expected),'command entry incomplete');
       add(sub.at(-1)?.noteVisible?.includes(c.syntax),'command syntax missing in visible lab note: '+c.id);
