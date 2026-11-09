@@ -28,13 +28,15 @@
       "id": "JITL",
       "sourceRef": "",
       "rights": "",
-      "expectedCount": 0
+      "matchedCount": 0,
+      "noMatchesReason": ""
     },
     {
       "id": "OCG",
       "sourceRef": "",
       "rights": "",
-      "expectedCount": 0
+      "matchedCount": 0,
+      "noMatchesReason": ""
     }
   ],
   "cards": [],
