@@ -8,6 +8,21 @@ Status: analiza publicznej oferty i repozytorium; nie jest potwierdzeniem dział
 - Packet Tracer/NetAcad: sprzęt wirtualny i topologie do pracy praktycznej: https://www.netacad.com/courses/exploring-networking-cisco-packet-tracer
 - Dla IOS XE oraz konkretnych komend: oficjalna konfiguracja Cisco dla odpowiedniej wersji urządzenia; nie zakładać, że własny symulator obsługuje wszystkie opcje.
 
+## Dokładna mapa domen egzaminu — zakres Cisco (weryfikacja 09.11.2026)
+**CCNA 200-301 v1.1 (egzamin do 02.02.2027):**
+- Network Fundamentals 20%; Network Access 20%; IP Connectivity 25%; IP Services 10%; Security Fundamentals 15%; Automation and Programmability 10%.
+
+**CCNA 200-301 v2.0 (egzamin od 03.02.2027):**
+- Network Infrastructure and Connectivity — **25%** (m.in. diagnoza okablowania, IPv4/IPv6, klientów, DHCPv4, Wi-Fi).
+- Switching and Network Access — **25%** (L2/L3, 802.1Q, LACP, SVI, PoE, Rapid PVST+, CDP/LLDP, troubleshooting i packet captures).
+- IP Routing — **20%** (trasy statyczne, OSPFv2 dla IPv4 i OSPFv3 dla IPv6, HSRP i VRRP).
+- Network Services and Security — **20%** (AAA, TACACS+/RADIUS, SFTP/SCP, NAT/PAT, DNS, IPsec, ACL, DHCP snooping, DAI, storm control, RA guard, port security).
+- AI, and Network Operations and Management — **10%** (agentic AI, prompty, SNMP, Ansible, syslog, zarządzanie siecią).
+
+**Źródło pierwotne:** [Cisco PDF CCNA 200-301 v2.0 Exam Topics](https://learningcontent.cisco.com/documents/marketing/exam-topics/200-301_CCNA_v2.0_Exam_Topics_PDF.pdf), 3 strony, 2026; [Cisco v1.1](https://learningnetwork.cisco.com/s/ccna-exam-topics). Rozróżnienie obowiązuje dla nowych treści. Nie wystarczy zmapować lekcji do starych 6 działów: v2.0 ma nowy podział, większy nacisk na diagnozę, pracę z wynikiem poleceń i zadania praktyczne.
+
+**Lista kontroli różnic dla projektu:** OSPFv3/IPv6, VRRP, operacje plikowe SFTP/SCP, DHCPv4 troubleshooting, diagnostyka DNS i syslog, packet captures, SNMP/Ansible, prompt engineering/agentic AI. Wymagają weryfikacji obecności **i faktycznego działania** w treści, pytaniach i Packet Lab — sama nazwa pliku lub rozdziału nie dowodzi pokrycia. Nie oznaczaj ich „brakuje” bez testu konkretnego scenariusza.
+
 ## Konkurencja
 | Produkt | Publicznie opisane funkcje | Wniosek dla CCNAlab |
 |---|---|---|
