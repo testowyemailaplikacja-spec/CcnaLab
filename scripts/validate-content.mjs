@@ -32,6 +32,7 @@ function validatePack(p) {
   for(const k of ['transcriptRef','rawNoteRef','checkedAt']) add(isText(source[k]),'sourceEvidence.'+k+' required');
   const official=arr(p.officialSources,'officialSources');
   add(official.length>0,'at least one official source required');
+  add(official.some(x=>validUrl(x.url)&&/(^|\.)cisco\.com$/i.test(new URL(x.url).hostname)),'Cisco exam/technology reference required');
   official.forEach((x,i)=>{add(validUrl(x.url),'officialSources['+i+'].url invalid');if(validUrl(x.url))add(OFFICIAL.test(new URL(x.url).hostname),'officialSources['+i+'] not primary/official');add(isText(x.topic)&&isText(x.checkedAt),'officialSources['+i+'] topic/date required');});
   add(isText(p.internalReference?.path)&&Number(p.internalReference?.factCount)>0,'internal reference required');
   const sub=arr(p.subsections,'subsections');
@@ -63,6 +64,7 @@ function validatePack(p) {
     belongs(q,'question');
     add(q.mode==='ab'||q.mode==='abcd','question mode invalid: '+q.id);
     add(isText(q.stemPl)&&isText(q.stemEn),'bilingual stems missing: '+q.id);
+    add(isText(q.explanationPl)&&isText(q.explanationEn),'bilingual explanations missing: '+q.id);
     const opts=arr(q.options,'options:'+q.id);
     add(opts.length===(q.mode==='ab'?2:4),'wrong number of options: '+q.id);
     add(opts.filter(x=>x.correct===true).length===1,'exactly one correct answer: '+q.id);
@@ -74,14 +76,15 @@ function validatePack(p) {
   const aggregate=p.sectionAggregate||{};
   const checkAgg=(key,values)=>{
     const got=arr(aggregate[key],'aggregate.'+key);
-    add(got.every(isText)&&same(uniq(got),uniq(values)),'aggregate '+key+' differs from exact source IDs');
+    add(got.every(isText)&&got.length===uniq(got).length&&same(uniq(got),uniq(values)),'aggregate '+key+' differs from exact unique source IDs');
   };
   checkAgg('abIds',qs.filter(q=>q.mode==='ab').map(q=>q.id));
   checkAgg('abcdIds',qs.filter(q=>q.mode==='abcd').map(q=>q.id));
   checkAgg('videoQuizIds',ids(quiz));
   if(kind==='theory') {
     const decks=arr(p.decks,'decks');
-    add(['JITL','OCG'].every(id=>decks.some(d=>d.id===id && isText(d.sourceRef)&&isText(d.rights)&&d.expectedCount>0)),'both authorized Anki decks (JITL, OCG) required');
+    add(['JITL','OCG'].every(id=>decks.some(d=>d.id===id && isText(d.sourceRef)&&isText(d.rights)&&Number.isInteger(d.matchedCount)&&d.matchedCount>=0 && (d.matchedCount>0 || isText(d.noMatchesReason)))),'both authorized Anki decks (JITL, OCG) required');
+    decks.forEach(d=>add(d.matchedCount===cards.filter(c=>c.deckId===d.id).length,'Anki deck match count mismatch: '+d.id));
     const deckIds=new Set(decks.map(x=>x.id));
     cards.forEach(c=>{belongs(c,'card');add(deckIds.has(c.deckId)&&isText(c.sourceId),'deck provenance missing: '+c.id);add(isText(c.pl?.front)&&isText(c.pl?.back)&&isText(c.en?.front)&&isText(c.en?.back),'card PL/EN missing: '+c.id)});
     add(cards.length>0,'at least one imported card required');
@@ -98,11 +101,13 @@ function validatePack(p) {
     add(isText(lab.simulatorScenarioId),'Packet Lab scenarioId required');
     add(lab.simulatorVerified===true&&lab.negativeCaseVerified===true,'positive/negative simulator checks required');
     add(Array.isArray(lab.steps)&&lab.steps.length>0,'lab steps required');
+    add(Array.isArray(lab.noteParts)&&lab.noteParts.at(-1)==='commands','lab visible note must end in command list');
     add(Array.isArray(lab.diagram)&&lab.diagram.length>0,'lab diagram required');
     const commands=arr(lab.commands,'lab.commands');
     if(commands.length===0)add(lab.explicitNoCli===true,'missing explicit no-CLI confirmation');
     commands.forEach(c=>{
       add(isText(c.id)&&isText(c.syntax)&&isText(c.device)&&isText(c.mode)&&isText(c.expected),'command entry incomplete');
+      add(sub.at(-1)?.noteVisible?.includes(c.syntax),'command syntax missing in visible lab note: '+c.id);
       for(const mode of ['ab','abcd'])add(qs.some(q=>q.mode===mode&&Array.isArray(q.commandIds)&&q.commandIds.includes(c.id)),'command '+c.id+' missing '+mode+' question');
     });
     add(lab.download?.available===false || (validUrl(lab.download?.url)&&isText(lab.download?.rights)),'lab download rights or explicit unavailable required');
