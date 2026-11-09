@@ -1,0 +1,65 @@
+{
+  "schema": "ccnalab-content-v1",
+  "kind": "theory",
+  "contentId": "REPLACE_WITH_STABLE_ID",
+  "sectionId": "REPLACE_WITH_EXISTING_SECTION_ID",
+  "examVersion": "200-301-v1.1",
+  "video": {
+    "url": "",
+    "title": "",
+    "transcriptMode": "unverified",
+    "rights": "",
+    "quizCount": 0,
+    "visuals": []
+  },
+  "sourceEvidence": {
+    "transcriptRef": "",
+    "rawNoteRef": "",
+    "checkedAt": ""
+  },
+  "officialSources": [],
+  "internalReference": {
+    "path": "",
+    "factCount": 0
+  },
+  "subsections": [],
+  "decks": [
+    {
+      "id": "JITL",
+      "sourceRef": "",
+      "rights": "",
+      "expectedCount": 0
+    },
+    {
+      "id": "OCG",
+      "sourceRef": "",
+      "rights": "",
+      "expectedCount": 0
+    }
+  ],
+  "cards": [],
+  "questions": [],
+  "quizItems": [],
+  "lab": null,
+  "sectionAggregate": {
+    "flashcardIds": [],
+    "abIds": [],
+    "abcdIds": [],
+    "videoQuizIds": []
+  },
+  "review": {
+    "status": "PENDING",
+    "reviewer": "",
+    "evidence": "",
+    "manualFactCheck": false,
+    "manualDistractorCheck": false,
+    "bilingualUiChecked": false,
+    "regression": "NOT_RUN",
+    "browser": "NOT_RUN"
+  },
+  "release": {
+    "commit": "",
+    "wiedoraDeploySha": "",
+    "status": "NOT_RUN"
+  }
+}
