@@ -24,6 +24,8 @@ Repozytorium rozwojowe CCNAlab, niezależne od Wiedora. Gałąź bazowa main. CC
 ## Dokumenty
 - docs/CONTENT_PIPELINE.md — kanoniczny proces treści i laboratoriów.
 - docs/COMPETITIVE_GAP_ANALYSIS.md — porównanie rynku i oficjalnego Cisco, bez udawania wdrożenia.
+- docs/CCNALAB_TARGET_ARCHITECTURE.md — docelowe paczki treści, idempotencja i bezpieczna migracja z legacy.html (PROJEKT).
+- docs/CCNALAB_IMPLEMENTATION_BACKLOG.md — rejestr mikroetapów, zależności i faktycznych statusów.
 - data/content-workflow-template.json — format paczki audytowej.
 - scripts/validate-content.mjs — automatyczne bramki strukturalne; nie zastępują ręcznej weryfikacji.
 - apps/ccna/packet-lab/README.md — stan rzeczywistego symulatora.
