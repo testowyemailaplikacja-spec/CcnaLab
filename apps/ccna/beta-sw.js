@@ -39,8 +39,8 @@ self.addEventListener('fetch',event=>{
   if(request.method!=='GET')return;
   const url=new URL(request.url);
   if(url.origin!==self.location.origin)return;
-  if(!url.pathname.startsWith(APP_ROOT))return;
-  const isNavigation=request.mode==='navigate';
+  if(!url.pathname.startsWith(APP_ROOT)&&!url.pathname.startsWith('/apps/shared/'))return;
+  const isNavigation=request.mode==='navigate'&&url.pathname.startsWith(APP_ROOT);
   event.respondWith((async()=>{
     const cache=await caches.open(CACHE);
     const canonical=url.pathname;
