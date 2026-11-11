@@ -36,3 +36,9 @@ jobs:
           npx playwright install --with-deps chromium
       - name: Run real beta browser E2E against immutable Netlify Preview
         run: node scripts/beta-browser-e2e.cjs
+      - name: Run same Chromium checks against published Wiedora develop
+        if: github.event_name == 'pull_request'
+        env:
+          CCNALAB_E2E_ORIGIN: https://develop--constant-app.netlify.app
+          CCNALAB_EXPECTED_SHA: 25d4f3a7ab55ce66b68436795920eec5b24ccfce
+        run: node scripts/beta-browser-e2e.cjs
