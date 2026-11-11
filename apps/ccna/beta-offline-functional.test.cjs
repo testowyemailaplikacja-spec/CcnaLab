@@ -62,7 +62,7 @@ function harness({missing=[],brokenRequired=[]}={}){
     self,caches,fetch:network,Request:FakeRequest,Response,URL,
     console:{warn:()=>{}}
   });
-  const invoke=async name,request=>{
+  const invoke=async (name,request)=>{
     let pending;
     const event={
       request,
