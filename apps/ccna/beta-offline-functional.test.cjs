@@ -164,6 +164,7 @@ function simulateStatus({partial=false}={}){
     window:{addEventListener:()=>{}},
     setTimeout,clearTimeout,Error,Promise
   };
+  scope.window.caches=scope.caches;
   const stage={append(node){this.child=node}};
   const installing={
     state:'installing',callbacks:{},
@@ -189,7 +190,7 @@ function simulateStatus({partial=false}={}){
 }
 test('UI does not confuse Wiedora root worker with beta offline readiness',async()=>{
   const h=simulateStatus();
-  await Promise.resolve();await Promise.resolve();
+  await new Promise(resolve=>setTimeout(resolve,0));
   assert.match(h.labels.offline.textContent,/przygotowywanie/);
   h.activate();
   await new Promise(resolve=>setTimeout(resolve,0));
@@ -197,7 +198,7 @@ test('UI does not confuse Wiedora root worker with beta offline readiness',async
 });
 test('UI warns accurately when some Packet Lab files were not cached',async()=>{
   const h=simulateStatus({partial:true});
-  await Promise.resolve();await Promise.resolve();h.activate();
+  await new Promise(resolve=>setTimeout(resolve,0));h.activate();
   await new Promise(resolve=>setTimeout(resolve,0));
   assert.match(h.labels.offline.textContent,/część materiałów wymaga Internetu/);
 });
