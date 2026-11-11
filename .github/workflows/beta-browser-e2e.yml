@@ -6,6 +6,15 @@ on:
       - 'scripts/beta-browser-e2e.cjs'
       - '.github/workflows/beta-browser-e2e.yml'
   workflow_dispatch:
+    inputs:
+      origin:
+        description: "Adres opublikowanej bety Netlify (develop lub deploy-preview)"
+        required: true
+        default: "https://develop--constant-app.netlify.app"
+      expected_sha:
+        description: "Źródłowy SHA przypięty w Constant_app/develop"
+        required: true
+        default: "25d4f3a7ab55ce66b68436795920eec5b24ccfce"
 permissions:
   contents: read
 jobs:
@@ -13,8 +22,9 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     env:
-      CCNALAB_E2E_ORIGIN: https://deploy-preview-198--constant-app.netlify.app
-      CCNALAB_EXPECTED_SHA: 25d4f3a7ab55ce66b68436795920eec5b24ccfce
+      # For PRs we smoke-test the known pinned candidate; for manual runs set the target release.
+      CCNALAB_E2E_ORIGIN: ${{ github.event_name == 'workflow_dispatch' && inputs.origin || 'https://deploy-preview-198--constant-app.netlify.app' }}
+      CCNALAB_EXPECTED_SHA: ${{ github.event_name == 'workflow_dispatch' && inputs.expected_sha || '25d4f3a7ab55ce66b68436795920eec5b24ccfce' }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
