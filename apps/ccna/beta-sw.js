@@ -53,7 +53,9 @@ self.addEventListener('fetch',event=>{
           return net;
         }
       }catch{}
-      return (await cache.match(APP_ROOT+'index.html'))||Response.error();
+      const asset=/\.(?:html?|js|css|svg|json|webmanifest)$/.test(canonical);
+      const fallback=asset?canonical:APP_ROOT+'index.html';
+      return (await cache.match(fallback))||Response.error();
     }
     try{
       const network=await fetch(request);
