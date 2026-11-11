@@ -142,7 +142,7 @@ function simulateStatus({partial=false}={}){
       readyState:'complete',
       getElementById:id=>id==='ccnalab-beta-stagebar'?stage:id==='ccnalab-beta-offline-status'?labels.offline:null,
       createElement:tag=>{
-        const node={tagName:tag.toUpperCase(),textContent:'',attrs:{},setAttribute(k,v){this.attrs[k]=v}};
+        const node={tagName:tag.toUpperCase(),textContent:'',style:{},attrs:{},setAttribute(k,v){this.attrs[k]=v}};
         if(tag==='span')labels.offline=node;
         return node;
       }
