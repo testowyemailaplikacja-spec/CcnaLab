@@ -40,3 +40,20 @@ Wejściowe dane muszą zawierać: URL filmu, dostępne legalnie transkrypcje/not
 
 ## Bramka przed wydaniem
 CCNALab osobno: npm run verify, sprawdzona paczka per film, unikalne ID, recenzja techniczna i brak utraty postępów. Wiedora osobno: npm run verify i verify:full, test KWN izolacji, source SHA zgodny z pinned, Netlify staging SHA+browser+offline. Bez jednego z tych dowodów: „kod na gałęzi”, nie „wersja wdrożona”.
+
+## Aktualizacja odbioru — 11.11.2026 (po wydaniu P0)
+
+| ID | Stan 11.11 | Dowód / dalszy warunek |
+|---|---|---|
+| CCNA-P00 | DONE | Reguły AGENTS i pipeline 15+8 w repo main; obowiązują przy nowych treściach |
+| CCNA-P14 | IN_PROGRESS | Walidator 9/9, silnik 71/71, beta 10/10 natywnie PASS; pełna kontrola całej zawartości nadal otwarta |
+| CCNA-L07 | IN_PROGRESS | Działający Packet Lab i lokalne scenariusze; 53 ćwiczenia w katalogu, nie każde przetestowane |
+| CCNA-L08 | IN_PROGRESS | Pierwsze laboratorium uruchomione online i offline w Chromium; pozostałe 52, iOS i pełna kontrola CLI NOT_RUN |
+| CCNA-I01 | DONE | Oddzielny moduł `/apps/ccnalab-beta/`, Netlify Wiedora develop READY, przypięty SHA źródła |
+| CCNA-QA01 | DONE | Niezależny cache, weryfikacja zawartości i fałszywego READY: 6 testów funkcjonalnych workera + Chromium PASS |
+| CCNA-QA02 | DONE | Eksport/import izolowanego postępu, test odmowy obcych kluczy, oryginalne CCNA bez regresji w Chrome |
+| CCNA-QA03 | TODO | Fizyczne urządzenia iOS/Android, Safari, touch i PWA w wielu sesjach |
+| CCNA-QA04 | TODO | Automatyczny przebieg wszystkich 53 laboratoriów, pozytywne i negatywne oceny CLI |
+| CCNA-I02 | BLOCKED | Wydanie produkcyjne dopiero po odbiorze całego programu i osobnej decyzji |
+
+Potwierdzenie Node 90/90: GitHub Actions `43108742606`, `43108742657`. Chrom(e/ium) 8/8: `43109979015` (Playwright 1.65.0). Wydanie Wiedory `develop`: `6359096c059e4c43bbec6e4cf5c09fd33278c8e5`, Netlify `6af4e9817b33b0b9908f3ee5`. Żaden z tych wyników nie poświadcza nieprzebadanych pytań, laboratoriów ani zmian programu egzaminu v2.0.
