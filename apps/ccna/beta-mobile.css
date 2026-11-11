@@ -1,0 +1,39 @@
+/* Only included by CCNAlab Beta; never loaded by the legacy Wiedora CCNA. */
+@media (max-width: 680px) {
+  .pt-lab .pt-toolbar {
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: thin;
+    overscroll-behavior-x: contain;
+    min-height: 52px;
+    flex-wrap: nowrap;
+  }
+  .pt-lab .pt-toolbar button {
+    min-width: 44px !important;
+    width: 44px !important;
+    height: 44px !important;
+    min-height: 44px !important;
+    flex-shrink: 0;
+    padding: 8px !important;
+  }
+  .pt-lab .pt-category-row {
+    gap: 5px;
+    overflow-x: auto;
+  }
+  .pt-lab .pt-category-row button {
+    width: 44px !important;
+    min-width: 44px !important;
+    height: 44px !important;
+    min-height: 44px !important;
+    padding: 7px !important;
+    flex-shrink: 0;
+  }
+  .pt-lab .pt-strip button,
+  .pt-lab .pt-menu button,
+  .pt-lab .pt-realtime button {
+    min-height: 44px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pt-lab { scroll-behavior: auto; }
+}

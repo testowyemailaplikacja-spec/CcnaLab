@@ -6,6 +6,7 @@
   "scripts": {
     "test:content": "node --test scripts/validate-content.test.mjs",
     "test:packet-lab": "node --test apps/ccna/packet-lab/engine.test.cjs apps/ccna/packet-lab/extended.test.cjs apps/ccna/packet-lab/protocols.test.cjs",
-    "verify": "npm run test:content && npm run test:packet-lab && node --check apps/ccna/router.js && node --check apps/ccna/packet-lab/engine.js && node --check apps/ccna/packet-lab/cli.js"
+    "verify": "npm run test:content && npm run test:packet-lab && npm run test:beta && node --check apps/ccna/router.js && node --check apps/ccna/packet-lab/engine.js && node --check apps/ccna/packet-lab/cli.js && node --check apps/ccna/beta-tools.js && node --check apps/ccna/beta-offline.js && node --check apps/ccna/beta-sw.js",
+    "test:beta": "node --test apps/ccna/beta-quality.test.cjs"
   }
 }

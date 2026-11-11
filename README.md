@@ -23,4 +23,11 @@ Testy walidatora:
 
 Stan konkurencji, oficjalnego zakresu Cisco i plan rozwoju: [docs/COMPETITIVE_GAP_ANALYSIS.md](docs/COMPETITIVE_GAP_ANALYSIS.md).
 
-Wiedora develop będzie wyświetlała **CCNA — Wersja beta · Tylko CCNAlab** jako istniejący moduł /apps/ccna/, z wersją programową przypiętą do SHA repozytorium CCNAlab. Działania nad aplikacją wykonuje wyłącznie projekt CCNAlab; masterplan Wiedory i KWN nie edytują jej wnętrza. Obecny stan repo nie oznacza, że pełny automat YouTube/Anki lub migracja do Wiedory już działa.
+Wiedora `develop` udostępnia **dwie osobne aplikacje**: dotychczasowe CCNA pod `/apps/ccna/` oraz niezależne **CCNAlab Beta** pod `/apps/ccnalab-beta/`. Kod bety pochodzi z przypiętego SHA repozytorium CCNAlab, a jej postępy mają oddzielny prefiks `ccnalab-beta:v1:`. Zmiany źródła nie aktualizują automatycznie bety: potrzebny jest przegląd, test i wydanie w repozytorium Wiedory. Działania nad aplikacją wykonuje wyłącznie projekt CCNAlab; masterplan Wiedory i KWN nie edytują jej wnętrza. Obecny stan repo nie oznacza, że pełny automat YouTube/Anki lub migracja do Wiedory już działa.
+
+
+### Testy i poprawki bety (11.11.2026)
+
+Pliki `apps/ccna/beta-tools.js`, `beta-offline.js`, `beta-sw.js` i `beta-mobile.css` są **dodatkami wyłącznie do izolowanego wydania beta**. Nie wolno włączać ich do starego CCNA w Wiedorze. Podłączanie i separacja danych odbywają się w `Constant_app/scripts/ccna/ccnalab-beta-stage.cjs`.
+
+Zakres: eksport i import lokalnych postępów z walidacją kluczy, osobny cache offline i obszar service workera, informacja o stanie zapisu oraz większe przyciski Packet Lab na telefonie. Zapis wciąż jest **lokalny i niesynchronizowany z kontem**; nie traktować importu jako synchronizacji. Pełne testy urządzeń, wszystkich laboratoriów i audyt CCNA v2.0 są odrębnymi, otwartymi zadaniami.
