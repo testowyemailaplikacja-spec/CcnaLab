@@ -1,0 +1,15 @@
+# Private review material and generated beta staging must not enter a public repo.
+build/
+.cache/
+node_modules/
+data/packs/
+data/private/
+data/internal/
+data/source-reference/
+data/source-registry/
+data/imported-anki/
+*.apkg
+*.colpkg
+.env
+.env.*
+!.env.example
