@@ -22,3 +22,5 @@ jobs:
           node-version: 22
       - name: CCNAlab content, Packet Lab and beta checks
         run: npm run verify
+      - name: Report content publishing readiness (informational, not a release authorization)
+        run: npm run audit:readiness
