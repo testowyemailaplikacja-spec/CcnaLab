@@ -6,10 +6,13 @@
   "scripts": {
     "test:content": "node --test scripts/validate-content.test.mjs",
     "test:packet-lab": "node --test apps/ccna/packet-lab/engine.test.cjs apps/ccna/packet-lab/extended.test.cjs apps/ccna/packet-lab/protocols.test.cjs",
-    "verify": "npm run test:content && npm run test:packet-lab && npm run test:beta && npm run test:readiness && node --check apps/ccna/router.js && node --check apps/ccna/packet-lab/engine.js && node --check apps/ccna/packet-lab/cli.js && node --check apps/ccna/beta-tools.js && node --check apps/ccna/beta-offline.js && node --check apps/ccna/beta-sw.js",
+    "verify": "npm run test:content && npm run test:packet-lab && npm run test:beta && npm run test:readiness && npm run test:foundations && node --check apps/ccna/router.js && node --check apps/ccna/packet-lab/engine.js && node --check apps/ccna/packet-lab/cli.js && node --check apps/ccna/beta-tools.js && node --check apps/ccna/beta-offline.js && node --check apps/ccna/beta-sw.js",
     "test:beta": "node --test apps/ccna/beta-quality.test.cjs apps/ccna/beta-offline-functional.test.cjs",
     "audit:readiness": "node scripts/audit-content-readiness.cjs",
     "audit:readiness:json": "node scripts/audit-content-readiness.cjs --json",
-    "test:readiness": "node --test scripts/audit-content-readiness.test.cjs"
+    "test:readiness": "node --test scripts/audit-content-readiness.test.cjs",
+    "test:foundations": "node --test scripts/check-legacy-ids.test.cjs scripts/stage-content-pack.test.mjs",
+    "check:legacy-ids": "node scripts/check-legacy-ids.cjs",
+    "stage:content": "node scripts/stage-content-pack.mjs"
   }
 }
