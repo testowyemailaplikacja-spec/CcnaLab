@@ -48,6 +48,11 @@ test('fresh zero-trust root needs actual publisher, runtime hook, identity snaps
       'apps/ccna/renderer/lab-view.js','scripts/validate-coverage.mjs',
       'data/coverage/200-301-v1.1.json','data/coverage/200-301-v2.0.json'];
     for(const name of source)r.write(name);
+    r.write('data/mapping/legacy-ids.json',JSON.stringify({
+      status:'FULL_VERIFIED_RUNTIME_SNAPSHOT',
+      runtimeInventory:{verified:true,sectionIds:['demo'],subsectionIds:['lab-demo'],
+        questionIds:['q1'],flashcardIds:['f1'],labIds:['lab-demo']}
+    }));
     r.write('apps/ccna/router.js','const published="data/published/sections";');
     r.write('apps/ccna/packet-lab/curriculum.js','(function(root){\n  const topics = [{"id":"demo","subsections":[{"id":"lab-demo","lab":true}]}];\n  if (typeof module === "object" && module.exports) module.exports = topics;\n})(this);');
     for(const name of ['apps/ccna/packet-lab/engine.js','apps/ccna/packet-lab/engine.test.cjs',
