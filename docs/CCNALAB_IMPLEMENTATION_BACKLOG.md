@@ -57,3 +57,16 @@ CCNALab osobno: npm run verify, sprawdzona paczka per film, unikalne ID, recenzj
 | CCNA-I02 | BLOCKED | Wydanie produkcyjne dopiero po odbiorze całego programu i osobnej decyzji |
 
 Potwierdzenie Node 90/90: GitHub Actions `43108742606`, `43108742657`. Chrom(e/ium) 8/8: `43109979015` (Playwright 1.65.0). Wydanie Wiedory `develop`: `6359096c059e4c43bbec6e4cf5c09fd33278c8e5`, Netlify `6af4e9817b33b0b9908f3ee5`. Żaden z tych wyników nie poświadcza nieprzebadanych pytań, laboratoriów ani zmian programu egzaminu v2.0.
+
+
+## Stan wdrażania fundamentów 12.11.2026 — paczka READY-01/02/04
+
+| Element | Status | Dowody i ograniczenia |
+|---|---|---|
+| READY-01A | DONE | `data/mapping/legacy-ids.json` zabezpiecza Git blob SHA źródła, 3778 literalnych ID oraz 50 działów/127 podtematów; test odmowy usunięcia lub podmiany ID |
+| READY-01B | IN_PROGRESS | Brakuje pełnego zrzutu runtime wszystkich identyfikatorów kart, pytań, stanów postępu i kontrolowanego mapowania migracji; G03 pozostaje BLOCKED |
+| READY-02A | IN_PROGRESS | `stage-content-pack.mjs` wymaga rzeczywistych lokalnych plików dowodowych, obu talii i oddzielnej deklaracji przeglądu; bez potwierdzonych praw i weryfikacji źródeł Cisco nie jest to finalny proces G01/G07 |
+| READY-04A | IN_PROGRESS | Działa bezpieczny, ignorowany przez Git dry-run i staging autorskiej paczki z filtrowaniem prywatnej referencji; **brak publikatora i rendererów**, G04 pozostaje BLOCKED |
+| READY-05–08 | TODO | Bez realnego pilota, przejścia do UI, testu migracji i rollbacku nie oznaczać gotowości |
+
+Zasada: wcześniejsze 96 testów to weryfikacja istniejącego kodu i audytora. Testy z tej paczki weryfikują tylko ochronę ID oraz mechanizm przygotowania materiałów, a nie prawdziwą publikację nowej lekcji. Szczegóły: `docs/SAFE_CONTENT_STAGING_20261112.md`.
