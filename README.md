@@ -47,3 +47,10 @@ Zakres: eksport i import lokalnych postępów z walidacją kluczy, osobny cache 
 Wynik: **GO dla eksperymentalnych mechanik i redakcji pilotów w CcnaLab; NO-GO dla hurtowego generowania i publikowania lekcji**. Zobacz [raport z kryteriami odbioru](docs/CCNALAB_CONTENT_MECHANICS_READINESS_AUDIT_20261112.md).
 
 Raport z aktualnego kodu: `npm run audit:readiness`; JSON: `npm run audit:readiness:json`; kontrola blokująca automatyczną publikację: `node scripts/audit-content-readiness.cjs --require-publish-ready` (kod 1 oznacza nadal brak wymaganej infrastruktury). Kontrole są częścią `npm run verify`. Testy bieżącej aplikacji nie są równoznaczne z przetestowanym systemem publikacji nowych paczek.
+
+
+## Fundamenty dodawania treści — 12.11.2026
+
+Pierwszy bezpieczny etap jest opisany w [instrukcji stagingu](docs/SAFE_CONTENT_STAGING_20261112.md). Utworzono bazę 3778 statycznie zapisanych identyfikatorów źródłowego kursu i skrypt porównujący ją z istniejącą aplikacją (`npm run check:legacy-ids`). `npm run test:foundations` sprawdza brak cichej migracji i kontrolowany, **niepublikujący** eksport zatwierdzonych paczek do `build/staged/`.
+
+**Nie ma jeszcze** automatycznego importu YouTube/Anki ani aktywnego loadera nowych lekcji w Wiedorze. Nie używać nowego mechanizmu do produkcji publicznych materiałów bez dalszych testów.
