@@ -41,3 +41,9 @@ Zakres: eksport i import lokalnych postępów z walidacją kluczy, osobny cache 
 - **Chromium 8/8 PASS**: prawdziwy Netlify Preview, eksport i import postępu, zakaz importu obcych kluczy, mobilne przyciski, osobny service worker, komplet cache, odświeżenie i otwarcie pierwszego laboratorium bez Internetu. GitHub Actions: https://github.com/testowyemailaplikacja-spec/CcnaLab/actions/runs/43109979015 .
 - **Nadal NOT_RUN/BLOCKED:** wszystkie 53 laboratoria, fizyczny iOS/Android, pełny audyt 3583 pytań, legalne materiały YouTube i obie talie Anki, komplet CCNA v2.0. Wynik 8/8 nie oznacza ukończenia tych zagadnień.
 - Test manualny przeglądarki z katalogu repo: `CCNALAB_E2E_ORIGIN=https://develop--constant-app.netlify.app CCNALAB_EXPECTED_SHA=25d4f3a7ab55ce66b68436795920eec5b24ccfce node scripts/beta-browser-e2e.cjs`, po instalacji `playwright@1.65.0` i Chromium. Uruchamiaj bez danych użytkowników, w czystym profilu.
+
+## Audyt gotowości do nowych treści i mechanik (12.11.2026)
+
+Wynik: **GO dla eksperymentalnych mechanik i redakcji pilotów w CcnaLab; NO-GO dla hurtowego generowania i publikowania lekcji**. Zobacz [raport z kryteriami odbioru](docs/CCNALAB_CONTENT_MECHANICS_READINESS_AUDIT_20261112.md).
+
+Raport z aktualnego kodu: `npm run audit:readiness`; JSON: `npm run audit:readiness:json`; kontrola blokująca automatyczną publikację: `node scripts/audit-content-readiness.cjs --require-publish-ready` (kod 1 oznacza nadal brak wymaganej infrastruktury). Kontrole są częścią `npm run verify`. Testy bieżącej aplikacji nie są równoznaczne z przetestowanym systemem publikacji nowych paczek.
