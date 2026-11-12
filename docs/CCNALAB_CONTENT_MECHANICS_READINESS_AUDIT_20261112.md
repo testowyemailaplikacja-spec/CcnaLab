@@ -23,7 +23,7 @@ Data kontroli: **12.11.2026**. Repozytorium: `testowyemailaplikacja-spec/CcnaLab
 - `apps/ccna/renderer/{lesson-view,quiz-view,lab-view}.js` — **NIE ISTNIEJĄ**; w `index.html`, `router.js` i `study-adapter.js` nie znaleziono jawnego podłączenia loadera nowego formatu.
 - `apps/ccna/legacy.html` — istnieje, ale nadal jest monolitem. Nie wykonywano pełnej analizy każdej z deklarowanych 3583 pozycji w jego treści.
 - `apps/ccna/packet-lab/{engine,scenarios,integration,curriculum}.js` — istnieją; testowane były funkcje silnika. **To nie potwierdza poprawności wszystkich ćwiczeń ani pełnego wsparcia IOS**.
-- `apps/ccna/packet-lab/README.md` odsyła do nieistniejącego `docs/CCNA_CONTENT_FROM_VIDEO_WORKFLOW.md`; kanoniczny aktualny proces jest opisany w `docs/CONTENT_PIPELINE.md`. **Należy usunąć rozbieżność odnośników.**
+- `apps/ccna/packet-lab/README.md` odsyła do nieistniejącego `docs/CCNA_CONTENT_FROM_VIDEO_WORKFLOW.md`; kanoniczny aktualny proces jest opisany w `docs/CONTENT_PIPELINE.md`. **Nieaktualny odnośnik poprawiono w tej samej paczce audytu.**
 
 ### Weryfikacja katalogu Packet Lab
 
