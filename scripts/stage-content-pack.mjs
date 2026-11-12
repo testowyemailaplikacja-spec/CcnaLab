@@ -51,6 +51,14 @@ function publicFields(p) {
   }));
   // Do not export source URL, copyrighted quiz bodies, original question refs,
   // rights evidence, Anki source IDs or private instructor reference data.
+  // Only learner-authored content can enter this artifact; provenance lives only
+  // in separate private evidence and should never appear as editorial meta text.
+  const learnerText=[...notes.flatMap(x=>[x.titleEn,x.noteVisible]),
+    ...cards.flatMap(c=>[c.pl.front,c.pl.back,c.en.front,c.en.back]),
+    ...questions.flatMap(q=>[q.stemPl,q.stemEn,q.explanationPl,q.explanationEn,
+      ...q.options.flatMap(o=>[o.pl,o.en])])].join('\n');
+  if(/\b(?:Jeremy(?:'s)?|JITL|OCG|sourceEvidence|transcriptRef|rawNoteRef)\b/i.test(learnerText))
+    throw Error('Editorial/source metadata inside visible learner content');
   return {
     schema:'ccnalab-staged-learner-v1',publicationStatus:'NOT_PUBLISHED',
     id:p.contentId,sectionId:p.sectionId,kind:p.kind,examVersion:p.examVersion,
@@ -113,8 +121,18 @@ function stage({file,evidenceRoot,approvalFile=null,write=false,outputRoot=path.
   const rel=path.relative(ROOT,output);
   if(rel.startsWith('..')||path.isAbsolute(rel)||!rel.startsWith('build'+path.sep))
     throw Error('Output outside private build/ is prohibited');
+  const evidenceInside=path.relative(ROOT,root);
+  if(!evidenceInside.startsWith('..')&&!path.isAbsolute(evidenceInside)&&
+     !evidenceInside.startsWith('build'+path.sep))
+    throw Error('Source evidence must be outside the public repository or under ignored build/');
   fs.mkdirSync(output,{recursive:true});
+  const realOutput=fs.realpathSync(output);
+  const realBuild=fs.realpathSync(path.join(ROOT,'build'));
+  if(realOutput!==realBuild&&!realOutput.startsWith(realBuild+path.sep))
+    throw Error('Staging directory escapes private build/ through a symlink');
   const target=path.join(output,p.contentId+'.json');
+  if(fs.existsSync(target)&&fs.lstatSync(target).isSymbolicLink())
+    throw Error('Refusing to follow staged artifact symlink');
   if(fs.existsSync(target)){
     if(fs.readFileSync(target,'utf8')!==rawArtifact)
       throw Error('Staged contentId collision; never overwrite an existing revision');
