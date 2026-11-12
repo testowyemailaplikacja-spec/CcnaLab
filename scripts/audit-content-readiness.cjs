@@ -68,7 +68,19 @@ function analyze(root=ROOT) {
   const gate=(name,ok,reason)=>{if(!ok)blocked.push({id:name,reason});};
   gate('G01-INGEST',missing.newTheory.length===0,'Missing ingestion, authorized Anki mapping or section builder');
   gate('G02-LAB-BUILDER',missing.newLab.length===0,'No reviewed lab bundle builder');
-  gate('G03-PROGRESS-IDS',missing.immutableIds.length===0,'No immutable snapshot of legacy IDs / migration mapping');
+  // A source-level ID lock is useful but is not a verified snapshot of
+  // runtime-generated IDs, questions and saved progress. Do NOT mark G03 DONE
+  // merely because data/mapping/legacy-ids.json exists.
+  let fullIdentityMap=false;
+  try{
+    const lock=JSON.parse(read('data/mapping/legacy-ids.json'));
+    fullIdentityMap=lock.status==='FULL_VERIFIED_RUNTIME_SNAPSHOT'&&
+      lock.runtimeInventory?.verified===true&&
+      ['sectionIds','subsectionIds','questionIds','flashcardIds','labIds']
+        .every(key=>Array.isArray(lock.runtimeInventory[key])&&lock.runtimeInventory[key].length>0);
+  }catch{}
+  gate('G03-PROGRESS-IDS',fullIdentityMap,
+    'Source ID lock is partial; verify all runtime card/question/lab IDs and progress migration');
   gate('G04-PUBLISH',missing.publish.length===0&&runtimeHook,
     'No complete content publisher plus runtime published-section loader');
   gate('G05-REAL-RELEASE',packs.length>0&&publishedSections.length>0,

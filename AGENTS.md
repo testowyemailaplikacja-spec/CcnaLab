@@ -31,3 +31,9 @@ Repozytorium rozwojowe CCNAlab, niezależne od Wiedora. Gałąź bazowa main. CC
 - apps/ccna/packet-lab/README.md — stan rzeczywistego symulatora.
 
 Każde polecenie „opracuj film” lub „zrób laboratorium” uruchamia powyższy proces od punktu 1, niezależnie od tego, czy użytkownik powtarza te wymagania.
+
+## SAFE STAGING / ID LOCK (12.11.2026)
+
+Przed zmianą `apps/ccna/legacy.html` lub `apps/ccna/packet-lab/curriculum.js` uruchom `npm run check:legacy-ids`. Nie aktualizuj automatycznie `data/mapping/legacy-ids.json` dla przejścia testów; zmiana historycznych ID wymaga osobnego audytu migracji.
+
+Zatwierdzoną paczkę z prywatnymi dowodami można na razie jedynie **przygotować bez publikacji** przez `scripts/stage-content-pack.mjs` zgodnie z `docs/SAFE_CONTENT_STAGING_20261112.md`. Treść, talie Anki i dowody trzymać poza publicznym repo; nie publikować pliku `build/staged/*.json` jako gotowej lekcji. Wciąż brak importera filmów, automatycznej kontroli praw, kompletnego inwentarza runtime, rendererów i testu pilota — żaden z tych kroków nie otrzymuje statusu PASS.
